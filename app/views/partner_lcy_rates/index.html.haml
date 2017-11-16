@@ -1,0 +1,39 @@
+%br
+%h1 Listing partner lcy rates
+%h2.collapsible
+  Advanced Search
+  %span.caret
+.collapsible-content
+  = render :partial => 'advanced_search'
+%br
+= "Total Count: #{@partner_lcy_rates_count}"
+%br
+= will_paginate @partner_lcy_rates
+%br
+%table.table.table-bordered.table-striped.table-hover
+  .thead
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Partner Code
+    %th{:style=>'text-align:left; background-color: lightblue;'} 
+      Rate
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Updated by
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Updated At
+  .tbody
+    - @partner_lcy_rates.each do |partner_lcy_rate|
+      %tr
+        %td{:style=>'text-align:left;'}
+          = link_to 'Show', partner_lcy_rate
+        %td{:style=>'text-align:left;'}
+          = link_to 'Edit', edit_partner_lcy_rate_path(partner_lcy_rate)
+        %td{:style=>'text-align:left;'}
+          = partner_lcy_rate.partner_code
+        %td{:style=>'text-align:left;'}
+          = partner_lcy_rate.rate
+        %td{:style=>'text-align:left;'}
+          = partner_lcy_rate.updated_user.try(:username)
+        %td{:style=>'text-align:left;'}
+          = partner_lcy_rate.updated_at.strftime("%d/%m/%Y %I:%M%p")

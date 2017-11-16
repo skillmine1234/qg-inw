@@ -1,0 +1,10 @@
+en:
+  menu:
+   partner: 'Partner'
+   bank: 'Bank'
+   purpose_code: 'Purpose Code'
+   inward_remittance: 'Inward Remittance'
+   inw_remittance_rule: 'Inward Remittance Rule'
+   inw_guideline: 'Inward Remittance Guideline'
+   partner_lcy_rate: 'Partner LCY Rate'
+   whitelisted_identity: 'Whitelisted Identity'

@@ -1,0 +1,26 @@
+= form_tag '', :method => 'get', :class => 'form-horizontal', :autocomplete=>"off" do
+  .control-group
+    = label_tag "Enabled", "Enabled?", :class => 'control-label'
+    = select_tag :enabled, options_for_select([['Yes','Y'],['No','N']],params[:enabled]),:prompt => 'All'
+  .control-group
+    = label_tag "Code", nil, :class => 'control-label'
+    = text_field_tag :code, params[:code]
+  .control-group
+    = label_tag "Account No", "Account No", :class => 'control-label'
+    = text_field_tag :account_no, params[:account_no]
+  .control-group
+    = label_tag "NEFT Allowed?", "NEFT Allowed?", :class => 'control-label'
+    = select_tag :allow_neft, options_for_select([['Yes','Y'],['No','N']],params[:allow_neft]),:prompt => 'All'
+  .control-group
+    = label_tag "RTGS Allowed?", "RTGS Allowed?", :class => 'control-label'
+    = select_tag :allow_rtgs, options_for_select([['Yes','Y'],['No','N']],params[:allow_rtgs]),:prompt => 'All'
+  .control-group
+    = label_tag "IMPS Allowed?", "IMPS Allowed?", :class => 'control-label'
+    = select_tag :allow_imps, options_for_select([['Yes','Y'],['No','N']],params[:allow_imps]),:prompt => 'All'
+  = hidden_field_tag :advanced_search, :true
+  .form-actions
+    = submit_tag "Search", :name => nil, :class => 'btn btn-primary', :id => "adv_search_button"
+    = button_tag "Reset", :type => 'button', :value=>'Reset', :class => 'btn', :id => 'adv_search_reset_button'
+
+:javascript
+  var in_advanced_search = true;
