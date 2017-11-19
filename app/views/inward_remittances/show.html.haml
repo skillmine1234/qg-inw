@@ -9,7 +9,7 @@
       = @inward_remittance.req_no
     %h3
       Attempt No:
-      = link_to @inward_remittance.attempt_no, inward_remittances_path({req_no: @inward_remittance.req_no, partner_code: @inward_remittance.partner_code})
+      = link_to @inward_remittance.attempt_no, inward_remittances_path({request_no: @inward_remittance.req_no, partner_id: @inward_remittance.partner_code})
     %h3
       Request At:
       = @inward_remittance.req_timestamp.try(:strftime, "%d/%m/%Y %I:%M%p")
@@ -102,7 +102,7 @@
         %tr
           %td.label Remitter Code
           %td.value
-            = link_to "#{@inward_remittance.rmtr_code}", inward_remittances_path(rmtr_code: @inward_remittance.rmtr_code, partner_code: @inward_remittance.partner_code)
+            = link_to "#{@inward_remittance.rmtr_code}", inward_remittances_path(rmtr_code: @inward_remittance.rmtr_code, partner_id: @inward_remittance.partner_code)
       %hr{:style=>'background-color: #F1F2F8; width: 100%'}
       %h3{:style => 'width: 50%; float:left;'} 
         = "Remitter: " + "#{@inward_remittance.remitter_type}"

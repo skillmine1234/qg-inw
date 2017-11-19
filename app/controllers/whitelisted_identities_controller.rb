@@ -129,11 +129,10 @@ class WhitelistedIdentitiesController < ApplicationController
     @audit = @record.audits[params[:version_id].to_i] rescue nil
   end
 
-  private
-
-  def search_params
-    params.permit(:page, :partner_code, :name, :rmtr_code, :bene_account_no, :bene_account_ifsc, :approval_status)
-  end
+  private    
+    def search_params
+      params.require(:whitelisted_identity_searcher).permit( :page, :approval_status, :partner_code, :name, :rmtr_code, :bene_account_no, :bene_account_ifsc)
+    end 
 
   def whitelisted_identity_params
     params.require(:whitelisted_identity).permit(:created_by, :full_name, :id_country, 

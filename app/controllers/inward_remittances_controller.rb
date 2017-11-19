@@ -11,7 +11,7 @@ class InwardRemittancesController < ApplicationController
   def index
     if request.get?
       # only 'safe/non-personal' parameters are allowed as search parameters in a query string
-      @searcher = InwardRemittanceSearcher.new(params.permit(:partner_code, :req_no, :wl_id, :wl_id_for, :page))
+      @searcher = InwardRemittanceSearcher.new(params.permit(:partner_id, :request_no, :wl_id, :wl_id_for, :page))
     else
       # rest parameters are in post
       @searcher = InwardRemittanceSearcher.new(search_params)
@@ -57,12 +57,12 @@ class InwardRemittancesController < ApplicationController
     @values = values.paginate(:per_page => 10, :page => params[:page]) rescue []
   end
 
-  private
-
-  def search_params
-    params.permit(:page, :status_code, :notify_status, :request_no, :all_attempts, :req_no, :partner_code, :bank_ref, :rmtr_full_name, :req_transfer_type, :transfer_type,
-                  :from_amount, :to_amount, :from_date, :to_date, :wl_id, :wl_id_for, :rmtr_code, :bene_account_no, :bene_account_ifsc)
-  end
+  private    
+    def search_params
+      params.require(:inward_remittance_searcher).permit( :page, :partner_id, :status_code, :notify_status, :request_no,
+      :rmtr_code, :bene_account_no, :bene_account_ifsc, :bank_ref, :rmtr_full_name, :req_transfer_type, :transfer_type,
+      :from_transfer_amount, :to_transfer_amount, :from_req_timestamp, :to_req_timestamp, :wl_id, :wl_id_for)
+    end
   
   def inward_remittance_params
     params.require(:inward_remittance).permit(:attempt_no, :bank_ref, :bene_account_ifsc, :bene_account_no, :bene_address1, 

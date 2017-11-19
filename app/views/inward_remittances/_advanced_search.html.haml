@@ -1,62 +1,21 @@
-%h2.collapsible
-  Advanced Search
-  %span.caret
-.collapsible-content
-  = form_tag inward_remittances_path, :method => :put, :class => 'form-horizontal', :autocomplete=>"off", id: 'advanced_search' do
-    .control-group
-      = label_tag ' '
-      #msg-error
-        = error_message_for(@searcher, :base)
-    .control-group
-      = label_tag :partner_code, "Partner Code*", :class => 'control-label'
-      = text_field_tag :partner_code, params[:partner_code]
-    .control-group
-      = label_tag :status_code, "Status", :class => 'control-label'
-      = select_tag :status_code, options_for_select([['ONHOLD','ONHOLD'],['SENT_TO_BENEFICIARY','SENT_TO_BENEFICIARY'],['COMPLETED','COMPLETED'],['FAILED','FAILED']],params[:status_code]),:prompt => 'ANY'
-    .control-group
-      = label_tag :notify_status, "Notify Status", :class => 'control-label'
-      = select_tag :notify_status, options_for_select([['PENDING NOTIFICATION','PENDING NOTIFICATION'],['NOTIFIED:REJECTED','NOTIFIED:REJECTED'],['NOTIFIED:OK','NOTIFIED:OK'],['NOTIFICATION FAILED','NOTIFICATION FAILED']],params[:notify_status]),:prompt => 'ANY'
-    .control-group
-      = label_tag :req_no, "Request No", :class => 'control-label'
-      = text_field_tag :req_no, params[:req_no]
-    .control-group
-      = label_tag :rmtr_code, "Remitter Code", :class => 'control-label'
-      = text_field_tag :rmtr_code, params[:rmtr_code]
-    .control-group
-      = label_tag :bene_account_no, "Beneficiary Account No", :class => 'control-label'
-      = text_field_tag :bene_account_no, params[:bene_account_no]
-    .control-group
-      = label_tag :bene_account_ifsc, "Beneficiary Account IFSC", :class => 'control-label'
-      = text_field_tag :bene_account_ifsc, params[:bene_account_ifsc]
-    .control-group
-      = label_tag :bank_ref, "Bank Reference No", :class => 'control-label'
-      = text_field_tag :bank_ref, params[:bank_ref]
-    .control-group
-      = label_tag :rmtr_full_name, "Remitter Name", :class => 'control-label'
-      = text_field_tag :rmtr_full_name, params[:rmtr_full_name]
-    .control-group
-      = label_tag :req_transfer_type, "Request Transfer Type", :class => 'control-label'
-      = select_tag :req_transfer_type, options_for_select([['NEFT','NEFT'],['IMPS','IMPS'],['RTGS','RTGS'],['FT','FT']],params[:req_transfer_type]),:prompt => 'ANY'
-    .control-group
-      = label_tag :transfer_type, "Transfer Type", :class => 'control-label'
-      = select_tag :transfer_type, options_for_select([['NEFT','NEFT'],['IMPS','IMPS'],['RTGS','RTGS'],['FT','FT']],params[:transfer_type]),:prompt => 'ANY'
-    .control-group
-      = label_tag :from_amount, "Transfer Amount", :class => 'control-label'
-      = text_field_tag :from_amount, params[:from_amount]
-      To
-      = text_field_tag :to_amount, params[:to_amount]
-    .control-group
-      = label_tag :from_date, "Request Date", :class => 'control-label'
-      = text_field_tag :from_date, params[:from_date]
-      To
-      = text_field_tag :to_date, params[:to_date]
-    = hidden_field_tag :page, params[:page] || 1
-    .form-actions
-      = submit_tag "Search", :name => nil, :class => 'btn btn-primary', :id => "adv_search_button",onclick: "$('#page').val(1)"
-      = button_tag "Reset", :type => 'button', :value=>'Reset', :class => 'btn', :id => 'adv_search_reset_button'
+= search_form_for @searcher do |f|
+  = f.standard_fields
+  = f.input :partner_id
+  = f.input :status_code, as: :enum
+  = f.input :notify_status, as: :enum
+  = f.input :request_no
+  = f.input :rmtr_code
+  = f.input :bene_account_no
+  = f.input :bene_account_ifsc
+  = f.input :bank_ref
+  = f.input :rmtr_full_name
+  = f.input :req_transfer_type
+  = f.input :transfer_type, as: :enum
+  = f.input :transfer_amount, as: :between
+  = f.input :req_timestamp, as: :between
+  = f.action_buttons
+= pagination_links(@records)
 
 - if @searcher.errors.present?
   :javascript
     $('.collapsible-content').show(); 
-
-= advanced_search_page_links

@@ -103,7 +103,7 @@
         %tr
           %td.label Times Used
           %td
-            = link_to @whitelisted_identity.times_used, inward_remittances_path(partner_code: @whitelisted_identity.inward_remittance.try(:partner_code), wl_id: @whitelisted_identity.id, wl_id_for: @whitelisted_identity.id_for)
+            = link_to @whitelisted_identity.times_used, inward_remittances_path(partner_id: @whitelisted_identity.inward_remittance.try(:partner_code), wl_id: @whitelisted_identity.id, wl_id_for: @whitelisted_identity.id_for)
         %tr
           %td.label Created By
           %td
