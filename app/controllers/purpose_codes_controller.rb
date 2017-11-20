@@ -7,7 +7,6 @@ class PurposeCodesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
-  include PurposeCodeHelper
   
   def new
     @purpose_code = PurposeCode.new
@@ -51,12 +50,12 @@ class PurposeCodesController < ApplicationController
   end
 
   def index
-    if params[:advanced_search].present?
-      @purpose_codes = find_purpose_codes(params).order("id desc").paginate(:per_page => 10, :page => params[:page])
+    if request.get?
+      @searcher = PurposeCodeSearcher.new(params.permit(:page, :approval_status))
     else
-      @purpose_codes ||= PurposeCode.order("id desc").paginate(:per_page => 10, :page => params[:page])
+      @searcher = PurposeCodeSearcher.new(search_params)
     end
-    @purpose_codes_count = @purpose_codes.count
+    @records = @searcher.paginate
   end
 
   def audit_logs
@@ -68,7 +67,11 @@ class PurposeCodesController < ApplicationController
     redirect_to unapproved_records_path(group_name: 'inward-remittance')
   end
 
-  private
+  private    
+    def search_params
+      params.require(:purpose_code_searcher).permit( :page, :approval_status, :code, :is_enabled)
+    end 
+
 
   def purpose_code_params
     params.require(:purpose_code).permit(:code, :created_by, :daily_txn_limit, :description, {:disallowed_bene_types => []}, 

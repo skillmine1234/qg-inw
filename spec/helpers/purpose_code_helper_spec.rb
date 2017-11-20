@@ -32,15 +32,4 @@ describe PurposeCodeHelper do
       disallowed_bene_and_rem_types_on_show_page("C").should == "Corporates"
     end
   end
-
-  context 'find_purpose_code'do
-    it 'should return purpose_codes' do
-      purpose_code = Factory(:purpose_code,:is_enabled => 'Y', :approval_status => 'A')
-      find_purpose_codes({:enabled => 'Y'}).should == [purpose_code]
-      find_purpose_codes({:enabled => 'N'}).should == []
-      purpose_code = Factory(:purpose_code,:code => 'PC32', :approval_status => 'A')
-      find_purpose_codes({:code => 'PC32'}).should == [purpose_code]
-      find_purpose_codes({:code => 'PC12'}).should == []  
-    end
-  end  
 end

@@ -3,15 +3,8 @@
 %br
 %br
 %h1 Listing Purpose Codes
-%h2.collapsible
-  Advanced Search
-  %span.caret
-.collapsible-content
-  = render :partial => 'advanced_search'
 %br
-= "Total Count: #{@purpose_codes_count}"
-%br
-= will_paginate @purpose_codes
+= render :partial => 'advanced_search'
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead
@@ -38,7 +31,7 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
   .tbody
-    - @purpose_codes.each do |purpose_code|
+    - @records.each do |purpose_code|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', purpose_code

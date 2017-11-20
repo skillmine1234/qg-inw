@@ -1,14 +1,7 @@
 %br
 %h1 Listing partner lcy rates
-%h2.collapsible
-  Advanced Search
-  %span.caret
-.collapsible-content
-  = render :partial => 'advanced_search'
 %br
-= "Total Count: #{@partner_lcy_rates_count}"
-%br
-= will_paginate @partner_lcy_rates
+= render :partial => 'advanced_search'
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead
@@ -23,7 +16,7 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
   .tbody
-    - @partner_lcy_rates.each do |partner_lcy_rate|
+    - @records.each do |partner_lcy_rate|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', partner_lcy_rate

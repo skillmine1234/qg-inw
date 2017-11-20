@@ -14,15 +14,15 @@ describe PartnersController do
   end
 
   describe "GET index" do
-    it "assigns all partners as @partners" do
+    it "assigns all partners as @records" do
       partner = Factory(:partner, :approval_status => 'A')
       get :index
-      assigns(:partners).should eq([partner])
+      assigns(:records).should eq([partner])
     end
-    it "assigns all unapproved partners as @partners when approval_status is passed" do
+    it "assigns all unapproved partners as @records when approval_status is passed" do
       partner = Factory(:partner, :approval_status => 'U')
       get :index, :approval_status => 'U'
-      assigns(:partners).should eq([partner])
+      assigns(:records).should eq([partner])
     end
   end
 

@@ -22,16 +22,26 @@ Rails.application.routes.draw do
   get '/download_attachment' => 'whitelisted_identities#download_attachment'
   
   resources :purpose_codes do
-      member do
-        get :audit_logs
-        put :approve
-      end
+    member do
+      get :audit_logs
+      put :approve
     end
+    
+    collection do
+      get :index
+      put :index
+    end
+  end
 
   resources :partners do
     member do
       put :approve
       put :resend_notification
+    end
+    
+    collection do
+      get :index
+      put :index
     end
   end
   
@@ -42,6 +52,11 @@ Rails.application.routes.draw do
     member do
       get :audit_logs
       put :approve
+    end
+    
+    collection do
+      get :index
+      put :index
     end
   end
 

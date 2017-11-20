@@ -7,7 +7,6 @@ class PartnersController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
-  include PartnerHelper
 
   def new
     @partner = Partner.new
@@ -48,13 +47,12 @@ class PartnersController < ApplicationController
   end
 
   def index
-    if params[:advanced_search].present?
-      @partners = find_partners(params).order("id desc")
+    if request.get?
+      @searcher = PartnerSearcher.new(params.permit(:page, :approval_status))
     else
-      @partners ||= Partner.order("id desc")
+      @searcher = PartnerSearcher.new(search_params)
     end
-    @partners = @partners.paginate(:per_page => 10, :page => params[:page])
-    @partners_count = @partners.count
+    @records = @searcher.paginate
   end
 
   def audit_logs
@@ -72,7 +70,10 @@ class PartnersController < ApplicationController
     redirect_to @partner
   end
 
-  private
+  private    
+    def search_params
+      params.require(:partner_searcher).permit( :page, :approval_status, :enabled, :code, :account_no, :allow_neft, :rtgs_allow, :imps_allow)
+    end 
 
   def partner_params
     params.require(:partner).permit(:account_ifsc, :account_no, :allow_imps, :allow_neft, :allow_rtgs, 

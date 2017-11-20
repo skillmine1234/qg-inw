@@ -7,7 +7,6 @@ class PartnerLcyRatesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
-  include PartnerLcyRateHelper
 
 
   def create
@@ -45,12 +44,12 @@ class PartnerLcyRatesController < ApplicationController
   end
 
   def index
-    if params[:advanced_search].present?
-      @partner_lcy_rates = find_partner_lcy_rates(params).order("id desc").paginate(:per_page => 10, :page => params[:page])
+    if request.get?
+      @searcher = PartnerLcyRateSearcher.new(params.permit(:page, :approval_status))
     else
-      @partner_lcy_rates ||= PartnerLcyRate.order("id desc").paginate(:per_page => 10, :page => params[:page])
+      @searcher = PartnerLcyRateSearcher.new(search_params)
     end
-    @partner_lcy_rates_count = @partner_lcy_rates.count
+    @records = @searcher.paginate
   end
 
   def audit_logs
@@ -62,7 +61,11 @@ class PartnerLcyRatesController < ApplicationController
     redirect_to unapproved_records_path(group_name: 'inward-remittance')
   end
 
-  private
+  private    
+    def search_params
+      params.require(:partner_lcy_rate_searcher).permit( :page, :approval_status, :partner_code)
+    end 
+
 
   def partner_lcy_rate_params
     params.require(:partner_lcy_rate).permit(:partner_code, :created_by, :updated_by, :approved_id, :approved_version, 

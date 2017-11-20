@@ -1,17 +1,9 @@
 %br
 = link_to 'New Partner', new_partner_path
 %br
-%br
 %h1 Listing partners
-%h2.collapsible
-  Advanced Search
-  %span.caret
-.collapsible-content
-  = render :partial => 'advanced_search'
 %br
-= "Total Count: #{@partners_count}"
-%br
-= will_paginate @partners
+= render :partial => 'advanced_search'
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead
@@ -40,7 +32,7 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
   .tbody
-    - @partners.each do |partner|
+    - @records.each do |partner|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', partner

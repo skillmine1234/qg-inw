@@ -14,15 +14,15 @@ describe PartnerLcyRatesController do
   end
 
   describe "GET index" do
-    it "assigns all partner_lcy_rates as @partner_lcy_rates" do
+    it "assigns all partner_lcy_rates as @records" do
       partner_lcy_rate = Factory(:partner_lcy_rate, :approval_status => 'A')
       get :index
-      assigns(:partner_lcy_rates).should eq([partner_lcy_rate])
+      assigns(:records).should eq([partner_lcy_rate])
     end
-    it "assigns all unapproved partner_lcy_rates as @partner_lcy_rates when approval_status is passed" do
+    it "assigns all unapproved partner_lcy_rates as @records when approval_status is passed" do
       partner_lcy_rate = Factory(:partner_lcy_rate, :approval_status => 'U')
       get :index, :approval_status => 'U'
-      assigns(:partner_lcy_rates).should eq([partner_lcy_rate])
+      assigns(:records).should eq([partner_lcy_rate])
     end
   end
 

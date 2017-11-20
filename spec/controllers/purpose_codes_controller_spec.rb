@@ -12,15 +12,15 @@ describe PurposeCodesController do
   end
 
   describe "GET index" do
-    it "assigns all purpose_codes as @purpose_codes" do
+    it "assigns all purpose_codes as @records" do
       purpose_code = Factory(:purpose_code, :approval_status => 'A')
       get :index
-      assigns(:purpose_codes).should eq([purpose_code])
+      assigns(:records).should eq([purpose_code])
     end
-    it "assigns all unapproved purpose_codes as @purpose_codes when approval_status is passed" do
+    it "assigns all unapproved purpose_codes as @records when approval_status is passed" do
       purpose_code = Factory(:purpose_code, :approval_status => 'U')
       get :index, :approval_status => 'U'
-      assigns(:purpose_codes).should eq([purpose_code])
+      assigns(:records).should eq([purpose_code])
     end
   end
 
