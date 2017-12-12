@@ -1,0 +1,6 @@
+= search_form_for @searcher, {defaults: local_assigns[:defaults]} do |f|
+  = f.standard_fields
+  = f.input :code
+  = f.input :is_enabled, as: :enum
+  = f.action_buttons
+= pagination_links(@records)

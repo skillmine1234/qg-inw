@@ -1,0 +1,21 @@
+= search_form_for @searcher do |f|
+  = f.standard_fields
+  = f.input :partner_id
+  = f.input :status_code, as: :enum
+  = f.input :notify_status, as: :enum
+  = f.input :request_no
+  = f.input :rmtr_code
+  = f.input :bene_account_no
+  = f.input :bene_account_ifsc
+  = f.input :bank_ref
+  = f.input :rmtr_full_name
+  = f.input :req_transfer_type
+  = f.input :transfer_type, as: :enum
+  = f.input :transfer_amount, as: :between
+  = f.input :req_timestamp, as: :between
+  = f.action_buttons
+= pagination_links(@records)
+
+- if @searcher.errors.present?
+  :javascript
+    $('.collapsible-content').show(); 

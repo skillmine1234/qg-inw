@@ -1,0 +1,9 @@
+= search_form_for @searcher do |f|
+  = f.standard_fields
+  = f.input :partner_code
+  = f.input :name
+  = f.input :rmtr_code
+  = f.input :bene_account_no
+  = f.input :bene_account_ifsc
+  = f.action_buttons
+= pagination_links(@records)

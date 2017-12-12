@@ -1,0 +1,5 @@
+= search_form_for @searcher, {defaults: local_assigns[:defaults]} do |f|
+  = f.standard_fields
+  = f.input :partner_code
+  = f.action_buttons
+= pagination_links(@records)
