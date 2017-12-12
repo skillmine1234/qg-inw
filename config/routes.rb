@@ -44,9 +44,6 @@ Rails.application.routes.draw do
       put :index
     end
   end
-  
-  put '/incoming_file/:id/approve' => "incoming_files#approve"
-
 
   resources :partner_lcy_rates do
     member do
