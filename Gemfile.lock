@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qg-inw (1.0.0)
+    qg-inw (1.0.1)
       rails (= 4.2.2)
 
 GEM
@@ -90,8 +90,8 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.8)
-      activesupport (>= 4.2.0.beta, < 5.0)
+    rails-dom-testing (1.0.9)
+      activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
@@ -101,7 +101,7 @@ GEM
       activesupport (= 4.2.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.2.1)
+    rake (12.3.0)
     searcher_generator (1.0.3)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
