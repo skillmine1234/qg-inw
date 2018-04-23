@@ -4,7 +4,7 @@
       %h3 Whitelisted Identity Details 
       %br
       %p{:style => 'text-align:left; padding-left:6px; padding-bottom:17px'}
-        = render 'unapproved_records/approve', :@record => @whitelisted_identity
+        = render 'unapproved_records/approve', :@record => @whitelisted_identity, group_name: Qg::Inw::GROUP
       %table.table.no-border{:style=>"table-layout: fixed; width: 100%"}
         %tr
           %td.label Version
