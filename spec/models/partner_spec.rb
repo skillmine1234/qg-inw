@@ -320,49 +320,49 @@ describe Partner do
   #   end
   # end
   
-  # context "should_allow_neft?" do
-  #   it "should allow neft for the partner when the customer setup is complete in FCR" do
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
-  #     partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'Y', allow_imps: 'N', account_no: '1234567890')
-  #     partner.errors_on(:customer_id).should == []
-  #   end
-  #
-  #   it "should raise error when the mobile no. and email are not present in the customer setup in FCR" do
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: nil)
-  #     partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'Y', allow_imps: 'N', account_no: '1234567890')
-  #     partner.errors_on(:allow_neft).should == ["NEFT is not allowed for 2345 as the data setup in FCR is invalid"]
-  #   end
-  #
-  #   it "should raise error when there is no corresponding record in FCR" do
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
-  #     partner = Factory.build(:partner, customer_id: '234', allow_neft: 'Y', allow_imps: 'N', account_no: '0987654321')
-  #     partner.errors_on(:customer_id).should == ["no record found in FCR for 234"]
-  #   end
-  # end
-  
-  # context "should_allow_imps?" do
-  #   it "should allow imps for the partner when the customer setup is complete in FCR and ATOM" do
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
-  #     atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
-  #     partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'N', allow_imps: 'Y', account_no: '1234567890')
-  #     partner.errors_on(:customer_id).should == []
-  #   end
-  #
-  #   it "should raise error when there is no corresponding record in ATOM" do
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
-  #     atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
-  #     partner = Factory.build(:partner, customer_id: '234', allow_neft: 'N', allow_imps: 'Y', account_no: '0987654321')
-  #     partner.errors_on(:customer_id).should == ["no record found in FCR for 234", "no record found in ATOM for 234"]
-  #     partner.errors_on(:account_no).should == ["no record found in ATOM for 0987654321"]
-  #   end
-  #
-  #   it "should raise error when the mobile no.s in FCR and ATOM do not match for the customer" do
-  #     atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
-  #     fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '9999000099', ref_cust_email: 'aaa@gmail.com')
-  #     partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'N', allow_imps: 'Y', account_no: '1234567890')
-  #     partner.errors_on(:account_no).should == ["IMPS is not allowed for 1234567890 as the data setup in ATOM is invalid"]
-  #   end
-  # end
+  context "should_allow_neft?" do
+    it "should allow neft for the partner when the customer setup is complete in FCR" do
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
+      partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'Y', allow_imps: 'N', account_no: '1234567890')
+      partner.errors_on(:customer_id).should == []
+    end
+
+    it "should raise error when the mobile no. and email are not present in the customer setup in FCR" do
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: nil)
+      partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'Y', allow_imps: 'N', account_no: '1234567890')
+      partner.errors_on(:allow_neft).should == ["NEFT is not allowed for 2345 as the data setup in FCR is invalid"]
+    end
+
+    it "should raise error when there is no corresponding record in FCR" do
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
+      partner = Factory.build(:partner, customer_id: '234', allow_neft: 'Y', allow_imps: 'N', account_no: '0987654321')
+      partner.errors_on(:customer_id).should == ["no record found in FCR for 234"]
+    end
+  end
+
+  context "should_allow_imps?" do
+    it "should allow imps for the partner when the customer setup is complete in FCR and ATOM" do
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
+      atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
+      partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'N', allow_imps: 'Y', account_no: '1234567890')
+      partner.errors_on(:customer_id).should == []
+    end
+
+    it "should raise error when there is no corresponding record in ATOM" do
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
+      atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
+      partner = Factory.build(:partner, customer_id: '234', allow_neft: 'N', allow_imps: 'Y', account_no: '0987654321')
+      partner.errors_on(:customer_id).should == ["no record found in FCR for 234", "no record found in ATOM for 234"]
+      partner.errors_on(:account_no).should == ["no record found in ATOM for 0987654321"]
+    end
+
+    it "should raise error when the mobile no.s in FCR and ATOM do not match for the customer" do
+      atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890')
+      fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '9999000099', ref_cust_email: 'aaa@gmail.com')
+      partner = Factory.build(:partner, customer_id: '2345', allow_neft: 'N', allow_imps: 'Y', account_no: '1234567890')
+      partner.errors_on(:account_no).should == ["IMPS is not allowed for 1234567890 as the data setup in ATOM is invalid"]
+    end
+  end
   
   context "auto_resch_and_service_name" do
     it "should raise error when service_name is 'INW' and auto_reschdl_to_next_wrk_day is 'Y'" do      
