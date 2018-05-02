@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    qg-inw (1.0.3)
+    qg-inw (1.0.4)
       rails (= 4.2.2)
 
 GEM
