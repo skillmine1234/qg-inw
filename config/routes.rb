@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       put :revoke
       put :ratify
       put :approve
+      put :reject
     end
     collection do
       get :index
