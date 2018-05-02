@@ -25,8 +25,8 @@ describe InwRemittanceRulesController do
       it "assigns a newly created inw_remittance_rule as @rule" do
         params = Factory.attributes_for(:inw_remittance_rule)
         post :create, {:inw_remittance_rule => params}
-        assigns(:rule).should be_a(InwRemittanceRule)
-        assigns(:rule).should be_persisted
+        assigns(:inw_remittance_rule).should be_a(InwRemittanceRule)
+        assigns(:inw_remittance_rule).should be_persisted
       end
 
       it "redirects to the created inw_remittance_rule" do
@@ -69,7 +69,7 @@ describe InwRemittanceRulesController do
         params = rule.attributes.slice(*rule.class.attribute_names)
         params[:pattern_individuals] = "15"
         put :update, {:id => rule.to_param, :inw_remittance_rule => params}
-        assigns(:rule).should eq(rule)
+        assigns(:inw_remittance_rule).should eq(rule)
       end
 
       it "redirects to the rule" do
