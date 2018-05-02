@@ -9,34 +9,34 @@ class InwRemittanceRulesController < ApplicationController
   include ApplicationHelper
   
   def new
-    @rule = InwRemittanceRule.new
+    @inw_remittance_rule = InwRemittanceRule.new
   end
 
   def create
-    @rule = InwRemittanceRule.new(params[:inw_remittance_rule])
-    if !@rule.valid?
+    @inw_remittance_rule = InwRemittanceRule.new(params[:inw_remittance_rule])
+    if !@inw_remittance_rule.valid?
       render "new"
     else
-      @rule.created_by = current_user.id
-      @rule.save
+      @inw_remittance_rule.created_by = current_user.id
+      @inw_remittance_rule.save
       flash[:alert] = 'Rule successfully created and is pending for approval'
-      redirect_to @rule
+      redirect_to @inw_remittance_rule
     end
   end
 
   def update
-    @rule = InwRemittanceRule.unscoped.find_by_id(params[:id])
-    @rule.attributes = params[:inw_remittance_rule]
-    if !@rule.valid?
+    @inw_remittance_rule = InwRemittanceRule.unscoped.find_by_id(params[:id])
+    @inw_remittance_rule.attributes = params[:inw_remittance_rule]
+    if !@inw_remittance_rule.valid?
       render "edit"
     else
-      @rule.updated_by = current_user.id
-      @rule.save
+      @inw_remittance_rule.updated_by = current_user.id
+      @inw_remittance_rule.save
       flash[:alert] = 'Rule successfully modified and is pending for approval'
-      redirect_to @rule
+      redirect_to @inw_remittance_rule
     end
     rescue ActiveRecord::StaleObjectError
-      @rule.reload
+      @inw_remittance_rule.reload
       flash[:alert] = 'Someone edited the rule the same time you did. Please re-apply your changes to the rule.'
       render "edit"
   end
