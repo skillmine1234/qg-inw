@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   resources :partners do
     member do
+      get :audit_logs
       put :approve
       put :resend_notification
     end
@@ -95,4 +96,8 @@ Rails.application.routes.draw do
   get '/inward_remittances/:id/remitter_identities' => 'inward_remittances#remitter_identities'
   get '/inward_remittances/:id/beneficiary_identities' => 'inward_remittances#beneficiary_identities'
   get '/inward_remittances/:id/audit_logs/:step_name' => 'inward_remittances#audit_logs'
+
+  get '/sdn/search' => 'aml_search#find_search_results'
+  get '/sdn/search_results' => 'aml_search#results'
+  get '/sdn/search_result' => 'aml_search#search_result'
 end
