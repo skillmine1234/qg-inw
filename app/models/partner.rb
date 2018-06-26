@@ -116,17 +116,13 @@ class Partner < ActiveRecord::Base
   
   def should_allow_imps?
     fcr_customer = Fcr::Customer.find_by_cod_cust_id(self.customer_id)
-    atom_customer_by_cust_id = Atom::Customer.find_by_customerid(self.customer_id)
-    atom_customer_by_debit_acct = Atom::Customer.find_by_accountno(self.account_no)
-    atom_customer_by_mmid = Atom::Customer.find_by_mmid(self.mmid)
+    atom_customer = Atom::Customer.find_by(accountno: self.account_no, mmid: self.mmid, mobileno: self.mobile_no)
 
-    if fcr_customer.present? && atom_customer_by_cust_id.present? && atom_customer_by_debit_acct.present? && (mmid.present? && atom_customer_by_mmid.present?)
-      errors.add(:account_no, "IMPS is not allowed for #{self.account_no} as the data setup in ATOM is invalid") unless atom_customer_by_debit_acct.imps_allowed?(fcr_customer.ref_phone_mobile)
+    if fcr_customer.present? && atom_customer.present?
+      errors.add(:account_no, "IMPS is not allowed for #{self.account_no} as the data setup in ATOM is invalid") unless atom_customer.imps_allowed?(fcr_customer.ref_phone_mobile)
     else
       errors.add(:customer_id, "no record found in FCR for #{self.customer_id}") if fcr_customer.nil?
-      errors.add(:customer_id, "no record found in ATOM for #{self.customer_id}") if atom_customer_by_cust_id.nil?
-      errors.add(:account_no, "no record found in ATOM for #{self.account_no}") if atom_customer_by_debit_acct.nil?
-      errors.add(:mmid, "no record found in ATOM for #{self.mmid}") if mmid.present? && atom_customer_by_mmid.nil?
+      errors[:base] << "no record found in ATOM for the combination of Account No: #{self.account_no}, MMID: #{self.mmid} & Mobile No: #{self.mobile_no}" if atom_customer.nil?
     end
   end
 

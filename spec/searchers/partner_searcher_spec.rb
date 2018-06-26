@@ -30,7 +30,7 @@ describe PartnerSearcher do
 
       fcr_customer = Factory(:fcr_customer, cod_cust_id: '2345', ref_phone_mobile: '2222222222', ref_cust_email: 'aaa@gmail.com')
       atom_customer = Factory(:atom_customer, customerid: '2345', mobileno: '2222222222', isactive: '1', accountno: '1234567890', mmid: '1234123')
-      partner = Factory(:partner, customer_id: '2345', allow_imps: 'Y', :approval_status => 'A', :code => 'STRING5', account_no: '1234567890', mmid: '1234123')
+      partner = Factory(:partner, customer_id: '2345', allow_imps: 'Y', :approval_status => 'A', :code => 'STRING5', account_no: '1234567890', mmid: '1234123', mobile_no: '2222222222')
       PartnerSearcher.new({imps_allow: 'Y', code:'STRING5'}).paginate.should == [partner]
       PartnerSearcher.new({imps_allow: 'N', code:'STRING5'}).paginate.should == []
     end
