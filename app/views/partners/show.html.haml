@@ -1,7 +1,7 @@
 .form-horizontal.show_form
   .form-main-with-color{:style=>'background-color: #F1F2F8; margin: 1%;'}
     #form-details
-      %h3 Partner Details 
+      %h3 Partner Details
       %br
       %p{:style => 'text-align:left; padding-left:6px; padding-bottom:17px'}
         - can = can? :edit, @partner
@@ -80,19 +80,26 @@
             %td#msg-error
               = error_message_for(@partner, :identity_user_id, :prepend_text => "")
           %tr
-            %td.label Remitter SMS Allowed? 
+            %td.label Remitter SMS Allowed?
             %td.value
               = @partner.remitter_sms_allowed
             %td#msg-error
               = error_message_for(@partner, :remitter_sms_allowed, :prepend_text => "")
           %tr
-            %td.label Remitter Email Allowed? 
+            %td.label Remitter Email Allowed?
             %td.value
               = @partner.remitter_email_allowed
             %td#msg-error
               = error_message_for(@partner, :remitter_email_allowed, :prepend_text => "")
+          %tr
+            %td.label Reply With Beneficicary Name?
+            %td.value
+              = @partner.reply_with_bene_name
+            %td#msg-error
+              = error_message_for(@partner, :reply_with_bene_name, :prepend_text => "")
+
           / %tr
-          /   %td.label Beneficiary SMS Allowed? 
+          /   %td.label Beneficiary SMS Allowed?
           /   %td.value
           /     = @partner.beneficiary_sms_allowed
           /   %td#msg-error
