@@ -9,14 +9,14 @@ class WhitelistedIdentitiesController < ApplicationController
   include Approval2::ControllerAdditions
   include ApplicationHelper
 
-  def new    
+  def new
     @whitelisted_identity = WhitelistedIdentity.new
-    
-    # for creation of a whitelisted identity for a transaction 
+
+    # for creation of a whitelisted identity for a transaction
     if params[:inw_id].present?
       inw_txn = InwardRemittance.find_by_id(params[:inw_id])
-      
-      @whitelisted_identity.id_for = params[:id_for]      
+
+      @whitelisted_identity.id_for = params[:id_for]
     # for creation of a whitelisted identity for a identity
     elsif params[:id_id].present? && !(inw_identity = InwIdentity.find_by_id(params[:id_id])).nil?
       inw_txn = inw_identity.inward_remittance
@@ -39,7 +39,7 @@ class WhitelistedIdentitiesController < ApplicationController
         @whitelisted_identity.full_name = inw_txn.bene_full_name
       end
     end
-    
+
     @user = current_user
   end
 
@@ -60,7 +60,7 @@ class WhitelistedIdentitiesController < ApplicationController
       end
       redirect_to whitelisted_identities_path
     end
-  end 
+  end
 
   def index
     if request.get?
@@ -72,11 +72,11 @@ class WhitelistedIdentitiesController < ApplicationController
     end
     @records = @searcher.paginate
   end
-  
+
   def show
     @whitelisted_identity = WhitelistedIdentity.unscoped.find_by_id(params[:id])
   end
-  
+
   def download_attachment
     attachment = Attachment.find_by_id(params[:attachment_id])
     if attachment.nil?
@@ -90,7 +90,7 @@ class WhitelistedIdentitiesController < ApplicationController
       normal_attachment(attachment)
     end
   end
-  
+
   def approve
   rescue ::Fault::ProcedureFault, OCIError => e
    flash[:alert] = "#{e.message}"
@@ -99,17 +99,17 @@ class WhitelistedIdentitiesController < ApplicationController
   end
 
   def ratify
-    whitelisted_identity = WhitelistedIdentity.find(params[:id])   
-    whitelisted_identity.is_revoked = 'N'      
+    whitelisted_identity = WhitelistedIdentity.find(params[:id])
+    whitelisted_identity.is_revoked = 'N'
     flash[:alert] = !whitelisted_identity.save ? whitelisted_identity.errors.full_messages : 'WhitesListed Identity successfully ratified'
   rescue ActiveRecord::StaleObjectError
     flash[:alert] = 'Someone edited the whitelisted identity the same time you did. Please re-apply your changes.'
   ensure
     redirect_to whitelisted_identities_path
   end
-  
+
   def revoke
-    whitelisted_identity = WhitelistedIdentity.find(params[:id])   
+    whitelisted_identity = WhitelistedIdentity.find(params[:id])
     whitelisted_identity.is_revoked = 'Y'
     if !whitelisted_identity.save
       flash[:alert] = whitelisted_identity.errors.full_messages
@@ -129,14 +129,14 @@ class WhitelistedIdentitiesController < ApplicationController
     @audit = @record.audits[params[:version_id].to_i] rescue nil
   end
 
-  private    
+  private
     def search_params
       params.require(:whitelisted_identity_searcher).permit( :page, :approval_status, :partner_code, :name, :rmtr_code, :bene_account_no, :bene_account_ifsc)
-    end 
+    end
 
   def whitelisted_identity_params
-    params.require(:whitelisted_identity).permit(:created_by, :full_name, :id_country, 
-                                                 :id_issue_date, :id_expiry_date, :id_number, :id_type, 
+    params.require(:whitelisted_identity).permit(:created_by, :full_name, :id_country,
+                                                 :id_issue_date, :id_expiry_date, :id_number, :id_type,
                                                  :lock_version, :partner_id,
                                                  :updated_by, {:attachments_attributes => [:note, :user_id, :file, :_destroy]},
                                                  :approved_id, :approved_version, :created_for_req_no, :id_for)

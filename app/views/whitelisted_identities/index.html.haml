@@ -1,5 +1,5 @@
 %br
-= link_to 'New Whitelisted Identity', '/new_whitelisted_identities'
+= link_to 'New Whitelisted Identity',:controller => "whitelisted_identities",action: "new"
 %br
 %h1 Listing Whitelisted Identities
 = render :partial => 'advanced_search'

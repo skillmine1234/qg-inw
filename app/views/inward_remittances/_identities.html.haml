@@ -19,7 +19,7 @@
                 - if identity.id_type == 'partnerProvidedID'
                   = '-'
                 - else
-                  = link_to 'Add', new_whitelisted_identity_path(id_id: identity.id)
+                  = link_to 'Add', :controller => "whitelisted_identities",action: "new",id_id: identity.id
               - else
                 = link_to 'WhiteListed', identity.whitelisted_identity
           %tr
