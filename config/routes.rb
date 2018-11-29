@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
-  resources :whitelisted_identities, except: :index do
+
+
+  resources :whitelisted_identities, except: [:index,:new] do
     member do
       get :audit_logs
       put :revoke
@@ -13,21 +14,22 @@ Rails.application.routes.draw do
       put :index
     end
   end
-  
+
   namespace :api do
     namespace :v1 do
       resources :whitelisted_identities
     end
   end
-  
+
+  get '/new_whitelisted_identities' => 'whitelisted_identities#new'
   get '/download_attachment' => 'whitelisted_identities#download_attachment'
-  
+
   resources :purpose_codes do
     member do
       get :audit_logs
       put :approve
     end
-    
+
     collection do
       get :index
       put :index
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
       put :approve
       put :resend_notification
     end
-    
+
     collection do
       get :index
       put :index
@@ -52,7 +54,7 @@ Rails.application.routes.draw do
       get :audit_logs
       put :approve
     end
-    
+
     collection do
       get :index
       put :index
@@ -67,7 +69,7 @@ Rails.application.routes.draw do
     end
 
   get '/inw_error_msg' => "inw_remittance_rules#error_msg"
-  
+
   resources :inw_guidelines do
       member do
         get :audit_logs
@@ -81,10 +83,10 @@ Rails.application.routes.draw do
       put :approve
     end
   end
-  
+
   resources :inward_remittances, except: :index do
     member do
-      put 'release'      
+      put 'release'
     end
     collection do
       get :index
