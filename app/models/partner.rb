@@ -74,7 +74,7 @@ class Partner < ActiveRecord::Base
 
   def imps_and_mmid
     errors.add(:mmid,"MMID Mandatory for IMPS") if allow_imps == 'Y' and mmid.to_s.empty?
-    errors.add(:mobile_no,"Mobile No Mandatory for IMPS") if allow_imps == 'Y' and mobile_no.to_s.empty?
+    #errors.add(:mobile_no,"Mobile No Mandatory for IMPS") if allow_imps == 'Y' and mobile_no.to_s.empty?
   end
 
   def check_email_addresses
