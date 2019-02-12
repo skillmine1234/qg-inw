@@ -92,6 +92,18 @@
             %td#msg-error
               = error_message_for(@partner, :remitter_email_allowed, :prepend_text => "")
           %tr
+            %td.label Beneficiary SMS Allowed?
+            %td.value
+              = @partner.beneficiary_sms_allowed
+            %td#msg-error
+              = error_message_for(@partner, :beneficiary_sms_allowed, :prepend_text => "")
+          %tr
+            %td.label Beneficiary Email Allowed?
+            %td.value
+              = @partner.beneficiary_email_allowed
+            %td#msg-error
+              = error_message_for(@partner, :beneficiary_email_allowed, :prepend_text => "")
+          %tr
             %td.label Reply With Beneficicary Name?
             %td.value
               = @partner.reply_with_bene_name

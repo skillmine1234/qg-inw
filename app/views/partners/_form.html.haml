@@ -71,6 +71,16 @@
       #msg-error
         = error_message_for(@partner, :remitter_email_allowed, :prepend_text => "")
     .control-group
+      = f.label :beneficiary_sms_allowed, "Beneficiary SMS Allowed?", :class => 'control-label'
+      = f.check_box :beneficiary_sms_allowed, {},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :beneficiary_sms_allowed, :prepend_text => "")
+    .control-group
+      = f.label :remitter_email_allowed, "Beneficiary Email Allowed?", :class => 'control-label'
+      = f.check_box :beneficiary_email_allowed, {},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :beneficiary_email_allowed, :prepend_text => "")
+    .control-group
       = f.label :reply_with_bene_name, "Reply With Beneficiary Name ?", :class => 'control-label'
       = f.check_box :reply_with_bene_name, {},"Y","N"
       #msg-error
