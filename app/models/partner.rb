@@ -3,7 +3,18 @@ class Partner < ActiveRecord::Base
   include ServiceNotification
 
   SERVICE_NAMES = %w(INW INW2 RIPPLE)
-  
+
+  validate :name_of_service
+
+  def name_of_service
+    if service_name == "RIPPLE"
+      if sender_rc.empty?
+         errors.add(:sender_rc,"sender rc must be present") 
+      end
+    end     
+  end
+
+
   belongs_to :created_user, :foreign_key =>'created_by', :class_name => 'User'
   belongs_to :updated_user, :foreign_key =>'updated_by', :class_name => 'User'
   belongs_to :guideline, :foreign_key =>'guideline_id', :class_name => 'InwGuideline'
@@ -27,6 +38,8 @@ class Partner < ActiveRecord::Base
   validates :mmid, :numericality => {:only_integer => true}, length: {maximum: 7, minimum: 7}, :allow_blank => true
   validates :mobile_no, :numericality => {:only_integer => true}, length: {maximum: 10, minimum: 10}, :allow_blank => true
   validates_length_of :add_req_ref_in_rep, :add_transfer_amt_in_rep, minimum: 1, maximum: 1
+  
+  #validates_presence_of :sender_rc if  service_name == "RIPPLE"
 
   validate :imps_and_mmid
   validate :check_email_addresses
@@ -131,5 +144,13 @@ class Partner < ActiveRecord::Base
     { username: user.try(:username), first_name: user.try(:first_name), last_name: user.try(:last_name), mobile_no: user.try(:mobile_no),
       email: user.try(:email), service_name: 'InwardRemittance', customer_id: customer_id, app_id: app_code, account_no: account_no,
       partner_code: code }
+  end
+
+  def get_service_name(sender_rc_value,partner_service_name)
+    if sender_rc_value.present?
+       return "RIPPLE"
+    else
+        return partner_service_name
+    end
   end
 end

@@ -13,10 +13,20 @@ class PartnersController < ApplicationController
   end
 
   def create
+    if params[:partner][:service_name] == "RIPPLE" && action_name == "edit"
+        params[:partner][:service_name] = "INW"
+        params[:partner][:sender_rc] = ""
+    end
+
     @partner = Partner.new(params[:partner])
+
     if !@partner.valid?
+      params[:partner][:service_name] = "INW"
       render "new"
     else
+      if params[:partner][:service_name] == "RIPPLE"
+        params[:partner][:service_name] = "INW"
+      end
       @partner.created_by = current_user.id
       @partner.save!
 
@@ -31,8 +41,17 @@ class PartnersController < ApplicationController
     if !@partner.valid?
       render "edit"
     else
+      
+      if (@partner.service_name !="RIPPLE" && @partner.sender_rc != nil)
+        @partner.sender_rc = ""
+      end
+
+      if @partner.service_name == "RIPPLE"
+        @partner.service_name = "INW"
+      end
+      
       @partner.updated_by = current_user.id
-      @partner.save!
+      @partner.save! 
       flash[:alert] = 'Partner successfully modified and is pending for approval'
       redirect_to @partner
     end

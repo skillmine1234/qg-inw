@@ -203,9 +203,15 @@
           %tr
             %td.label Service Name
             %td.value
-              = @partner.service_name
+              = @partner.get_service_name(@partner.sender_rc,@partner.service_name)
             %td#msg-error
               = error_message_for(@partner, :service_name, :prepend_text => "")
+          %tr
+            %td.label Sender rc
+            %td.value
+              = @partner.sender_rc
+            %td#msg-error
+              = error_message_for(@partner, :sender_rc, :prepend_text => "")    
           %tr
             %td.label Auto Reschedule To Next Work Day?
             %td
