@@ -21,11 +21,10 @@ class PartnersController < ApplicationController
     @partner = Partner.new(params[:partner])
 
     if !@partner.valid?
-      params[:partner][:service_name] = "INW"
       render "new"
     else
       if params[:partner][:service_name] == "RIPPLE"
-        params[:partner][:service_name] = "INW"
+        @partner.service_name = "INW"
       end
       @partner.created_by = current_user.id
       @partner.save!
@@ -62,7 +61,7 @@ class PartnersController < ApplicationController
   end
 
   def show
-    @partner = Partner.unscoped.find_by_id(params[:id])
+    @partner = Partner.unscoped.find_by_id(params[:id])    
   end
 
   def index

@@ -4,7 +4,10 @@ $(document).ready(function(){
     $('#partner_mmid').prop('disabled',true);
     $('#partner_mobile_no').prop('disabled',true);
   }
-
+  if ($('#partner_service_name').val() == 'RIPPLE'){
+      $('#partner_sender_rc').prop('readOnly',false);
+    }
+    
   if(!$('#partner_allow_imps').is(":checked")){
     $('#partner_mmid').prop('disabled',true);
     $('#partner_mobile_no').prop('disabled',true);

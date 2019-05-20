@@ -39,7 +39,6 @@ class Partner < ActiveRecord::Base
   validates :mobile_no, :numericality => {:only_integer => true}, length: {maximum: 10, minimum: 10}, :allow_blank => true
   validates_length_of :add_req_ref_in_rep, :add_transfer_amt_in_rep, minimum: 1, maximum: 1
   
-  #validates_presence_of :sender_rc if  service_name == "RIPPLE"
 
   validate :imps_and_mmid
   validate :check_email_addresses

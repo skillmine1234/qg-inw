@@ -144,7 +144,7 @@
         = error_message_for(@partner, :service_name, :prepend_text => "")
     .control-group
       = f.label :sender_rc, "*Sender RC", :class => 'control-label'
-      = f.text_field :sender_rc, :maxlength => 20  
+      = f.text_field :sender_rc, :maxlength => 100  
       #msg-error
         = error_message_for(@partner, :sender_rc, :prepend_text => "")    
     .control-group
