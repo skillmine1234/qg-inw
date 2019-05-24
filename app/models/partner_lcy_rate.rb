@@ -15,4 +15,18 @@ class PartnerLcyRate < ActiveRecord::Base
     errors.add(:rate, "is invalid, only two digits are allowed after decimal point") if rate.to_f != rate.to_f.round(2)
     errors.add(:rate, "can't be greater than 1 because needs_lcy_rate is N for the guideline") if partner.try(:guideline).try(:needs_lcy_rate) == "N" && rate > 1.0
   end
+  def self.mtss_url
+    mtss_url = ActiveRecord::Base.connection.execute("select value from esb_configs where key='mtss_rate_update_url'")
+    return mtss_url.fetch.first
+  end
+
+  def self.read_username
+    username = ActiveRecord::Base.connection.execute("select value from esb_configs where key='url_user'")
+    return username.fetch.first
+  end
+
+  def self.read_password
+    password = ActiveRecord::Base.connection.execute("select value from esb_configs where key='url_password'")
+    return password.fetch.first
+  end
 end

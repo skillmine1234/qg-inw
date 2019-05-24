@@ -1,4 +1,7 @@
 require 'will_paginate/array'
+require 'net/http'
+require 'openssl'
+require 'json'
 
 class PartnerLcyRatesController < ApplicationController
   authorize_resource
@@ -38,6 +41,32 @@ class PartnerLcyRatesController < ApplicationController
       flash[:alert] = 'Someone edited the partner_lcy_rate the same time you did. Please re-apply your changes to the partner_lcy_rate.'
       render "edit"
   end 
+
+  def update_lcy_for_mtss
+    
+     mtss_url = PartnerLcyRate.mtss_url
+     username = PartnerLcyRate.read_username
+     password = PartnerLcyRate.read_password
+
+    begin
+      uri = URI("#{mtss_url}")
+      Net::HTTP.start(uri.host, uri.port,
+                      :use_ssl => uri.scheme == 'https',
+                      :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
+                      request = Net::HTTP::Post.new uri.request_uri
+                      request.basic_auth "#{username}", "#{password}"
+                      request.body = {}.to_json
+                      @response = http.request request # Net::HTTPResponse object
+                      end
+                      if @response.code == "200"
+                        @text = "Rate Updated Successfully"
+                      else
+                        @text = "Service Failed Rate not updated"
+                      end
+  rescue Exception => e
+    @text = e.to_s
+  end
+  end
 
   def show
     @partner_lcy_rate = PartnerLcyRate.unscoped.find_by_id(params[:id])

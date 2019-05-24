@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     end
 
     collection do
+      get :update_lcy_for_mtss
       get :index
       put :index
     end

@@ -1,7 +1,23 @@
+:javascript
+  $(document).ajaxSend(function(r, s) {
+      $("#spinner_area").show();
+    });
+    $(document).ajaxStop(function(r, s) {
+      $("#spinner_area").hide();
+    });
+
+#spinner_area{:style=>"float-left:100px;margin-left:550px;height:70px;width:250px;margin-top:10px;display:none"}
+  = image_tag "spinner_gif.gif",size: "50x50"
+  please wait rate is updated ....
+
 %br
 %h1 Listing partner lcy rates
 %br
 = render :partial => 'advanced_search'
+#mtss_button{:style => "float:right;"}
+  .btn-primary{:style=>"height:30px;width:150px;text-align: center;"}
+    = link_to "Update LCY for MTSS",update_lcy_for_mtss_partner_lcy_rates_path,:style=>"color: white;",:remote=>true
+%br
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead
