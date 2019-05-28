@@ -16,17 +16,17 @@ class PartnerLcyRate < ActiveRecord::Base
     errors.add(:rate, "can't be greater than 1 because needs_lcy_rate is N for the guideline") if partner.try(:guideline).try(:needs_lcy_rate) == "N" && rate > 1.0
   end
   def self.mtss_url
-    mtss_url = ActiveRecord::Base.connection.execute("select value from esb_configs where key='mtss_rate_update_url'")
+    mtss_url = ActiveRecord::Base.connection.execute("select value from esb_config where key='mtss_rate_update_url'")
     return mtss_url.fetch.first
   end
 
   def self.read_username
-    username = ActiveRecord::Base.connection.execute("select value from esb_configs where key='url_user'")
+    username = ActiveRecord::Base.connection.execute("select value from esb_config where key='url_user'")
     return username.fetch.first
   end
 
   def self.read_password
-    password = ActiveRecord::Base.connection.execute("select value from esb_configs where key='url_password'")
+    password = ActiveRecord::Base.connection.execute("select value from esb_config where key='url_password'")
     return password.fetch.first
   end
 end
