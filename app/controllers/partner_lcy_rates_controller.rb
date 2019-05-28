@@ -43,12 +43,11 @@ class PartnerLcyRatesController < ApplicationController
   end 
 
   def update_lcy_for_mtss
-    
-     mtss_url = PartnerLcyRate.mtss_url
-     username = PartnerLcyRate.read_username
-     password = PartnerLcyRate.read_password
-
     begin
+      mtss_url = PartnerLcyRate.mtss_url
+      username = PartnerLcyRate.read_username
+      password = PartnerLcyRate.read_password
+        
       uri = URI("#{mtss_url}")
       Net::HTTP.start(uri.host, uri.port,
                       :use_ssl => uri.scheme == 'https',
@@ -64,7 +63,7 @@ class PartnerLcyRatesController < ApplicationController
                         @text = "Service Failed Rate not updated"
                       end
   rescue Exception => e
-    @text = e.to_s
+     @text = e.to_s
   end
   end
 

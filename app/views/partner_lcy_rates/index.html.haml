@@ -4,6 +4,7 @@
     });
     $(document).ajaxStop(function(r, s) {
       $("#spinner_area").hide();
+      location.reload();
     });
 
 #spinner_area{:style=>"float-left:100px;margin-left:550px;height:70px;width:250px;margin-top:10px;display:none"}
