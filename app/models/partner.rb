@@ -70,8 +70,8 @@ class Partner < ActiveRecord::Base
     errors.add(:hold_for_whitelisting, "Allowed only when service is INW2 and Will Whitelist is true") if (hold_for_whitelisting == 'Y' && (will_whitelist == 'N' || service_name == 'INW'))
     errors.add(:txn_hold_period_days, "Allowed only when Hold for Whitelisting is true") if (hold_for_whitelisting == 'N' && txn_hold_period_days != 0)
     errors.add(:will_send_id, "Allowed only when Will Whitelist is true") if will_whitelist == 'N' && will_send_id == 'Y'
-    errors.add(:remitter_sms_allowed, "Allowed only when service is INW") if service_name == 'INW2' && remitter_sms_allowed == 'Y'
-    errors.add(:remitter_email_allowed, "Allowed only when service is INW") if service_name == 'INW2' && remitter_email_allowed == 'Y'
+    #errors.add(:remitter_sms_allowed, "Allowed only when service is INW") if service_name == 'INW2' && remitter_sms_allowed == 'Y'
+    #errors.add(:remitter_email_allowed, "Allowed only when service is INW") if service_name == 'INW2' && remitter_email_allowed == 'Y'
   end
   
   def transfer_types

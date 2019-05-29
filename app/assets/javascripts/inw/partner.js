@@ -90,10 +90,10 @@ $(document).ready(function(){
       $('#partner_txn_hold_period_days').prop('readOnly',true);
       $('#partner_will_send_id').prop('disabled',true);
     }
-    $('#partner_remitter_sms_allowed').prop("checked",false);
-    $('#partner_remitter_sms_allowed').prop('disabled',true);
-    $('#partner_remitter_email_allowed').prop("checked",false);
-    $('#partner_remitter_email_allowed').prop('disabled',true);
+    //$('#partner_remitter_sms_allowed').prop("checked",false);
+    //$('#partner_remitter_sms_allowed').prop('disabled',true);
+    //$('#partner_remitter_email_allowed').prop("checked",false);
+    //$('#partner_remitter_email_allowed').prop('disabled',true);
     $('#partner_auto_reschdl_to_next_wrk_day').prop('disabled',false);
   }
   else {
@@ -108,8 +108,8 @@ $(document).ready(function(){
     $('#partner_txn_hold_period_days').val(0);
     $('#partner_hold_for_whitelisting').prop('disabled',true);
     $('#partner_txn_hold_period_days').prop('readOnly',true);
-    $('#partner_remitter_sms_allowed').prop('disabled',false);
-    $('#partner_remitter_email_allowed').prop('disabled',false);
+    //$('#partner_remitter_sms_allowed').prop('disabled',false);
+    //$('#partner_remitter_email_allowed').prop('disabled',false);
     $('#partner_auto_reschdl_to_next_wrk_day').prop('checked',false);
     $('#partner_auto_reschdl_to_next_wrk_day').prop('disabled',true);
   }
@@ -133,10 +133,10 @@ $(document).ready(function(){
         $('#partner_txn_hold_period_days').prop('readOnly',true);
         $('#partner_will_send_id').prop('disabled',true);
       }
-      $('#partner_remitter_sms_allowed').prop("checked",false);
-      $('#partner_remitter_sms_allowed').prop('disabled',true);
-      $('#partner_remitter_email_allowed').prop("checked",false);
-      $('#partner_remitter_email_allowed').prop('disabled',true);
+      //$('#partner_remitter_sms_allowed').prop("checked",false);
+      //$('#partner_remitter_sms_allowed').prop('disabled',true);
+      //$('#partner_remitter_email_allowed').prop("checked",false);
+      $//('#partner_remitter_email_allowed').prop('disabled',true);
       $('#partner_auto_reschdl_to_next_wrk_day').prop('disabled',false);
     }
     else {
@@ -151,8 +151,8 @@ $(document).ready(function(){
       $('#partner_txn_hold_period_days').val(0);
       $('#partner_hold_for_whitelisting').prop('disabled',true);
       $('#partner_txn_hold_period_days').prop('readOnly',true);
-      $('#partner_remitter_sms_allowed').prop('disabled',false);
-      $('#partner_remitter_email_allowed').prop('disabled',false);
+      //$('#partner_remitter_sms_allowed').prop('disabled',false);
+      //$('#partner_remitter_email_allowed').prop('disabled',false);
       $('#partner_auto_reschdl_to_next_wrk_day').prop('checked',false);
       $('#partner_auto_reschdl_to_next_wrk_day').prop('disabled',true);
     }
