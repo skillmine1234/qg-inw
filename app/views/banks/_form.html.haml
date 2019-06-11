@@ -25,6 +25,14 @@
         = f.check_box :imps_enabled, {},1,0
       #msg-error
         = error_message_for(@bank, :imps_enabled, :prepend_text => "")
+    .control-group
+      = f.label :upi_enabled,"UPI Enabled?", :class => 'control-label'
+      - if f.object.upi_enabled.nil?
+        = f.check_box :upi_enabled, {:checked => "checked"},"Y","N"
+      - else
+        = f.check_box :upi_enabled, {},"Y","N"
+      #msg-error
+        = error_message_for(@bank, :upi_enabled, :prepend_text => "")    
   .form-actions
     = f.button "submit" ,:class=>"btn btn-primary", :id => 'submit_partner'
     = link_to :Cancel,'/banks', :name => 'cancel', :class=>"cancel btn"

@@ -158,6 +158,21 @@
       #msg-error
         = error_message_for(@partner, :guideline_id, :prepend_text => "")
     .control-group
+      = f.label :allow_upi,"UPI Allowed?", :class => 'control-label'
+      = f.check_box :allow_upi,{},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :allow_upi, :prepend_text => "")
+    .control-group
+      = f.label :validate_vpa,"Validate VPA?", :class => 'control-label'
+      = f.check_box :validate_vpa,{},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :validate_vpa, :prepend_text => "")
+    .control-group
+      = f.label :merchant_id, "Merchant Id", :class => 'control-label'
+      = f.text_field :merchant_id, :maxlength => 30, :disabled => true
+      #msg-error
+        = error_message_for(@partner, :merchant_id, :prepend_text => "")    
+    .control-group
       = f.label :will_whitelist, "Will Whitelist", :class => 'control-label'
       = f.check_box :will_whitelist, {},"Y","N"
       #msg-error
@@ -216,3 +231,9 @@
     - (f.object.new_record? and f.object.code.nil?) ? label_name = "Create" : label_name = "Update"
     = f.button "submit" ,:class=>"btn btn-primary", :id => 'submit_partner', :value => label_name + ' Partner'
     = link_to :Cancel,'/partners', :name => 'cancel', :class=>"cancel btn"
+
+:javascript
+  $(document).ready(function() {
+    disableUPIColumns();
+    $('#partner_allow_upi').on('change',disableUPIColumns);
+  });  

@@ -104,6 +104,6 @@ class PartnersController < ApplicationController
                                     :notify_on_status_change, :app_code, :service_name, :guideline_id, :will_whitelist,
                                     :will_send_id, :hold_for_whitelisting, :hold_period_days, :auto_match_rule,
                                     :notification_sent_at, :auto_reschdl_to_next_wrk_day, :reply_with_bene_name,
-                                    :beneficiary_sms_allowed,:beneficiary_email_allowed,:sender_rc)
+                                    :beneficiary_sms_allowed,:beneficiary_email_allowed,:sender_rc,:allow_upi, :validate_vpa, :merchant_id)
   end
 end

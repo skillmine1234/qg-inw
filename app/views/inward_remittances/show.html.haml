@@ -82,6 +82,13 @@
         %tr
           %td.label Transfer Currency
           %td= @inward_remittance.transfer_ccy
+        %tr
+          %td.label PayerVPA
+          %td= @inward_remittance.try(:payervpa)
+        %tr
+          %td.label PayeeVPA
+          %td= @inward_remittance.try(:payeevpa)
+            
       %table.table.no-border{:style => 'word-wrap:break-word; table-layout: fixed; width: 50%; float:left;'} 
         %tr
           %td.label Transfer Amount

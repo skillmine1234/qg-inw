@@ -225,6 +225,24 @@
             %td#msg-error
               = error_message_for(@partner, :guideline_id, :prepend_text => "")
           %tr
+            %td.label UPI Allowed?
+            %td.value
+              = @partner.allow_upi
+            %td#msg-error
+              = error_message_for(@partner, :allow_upi, :prepend_text => "")
+          %tr
+            %td.label Validate VPA?
+            %td.value
+              = @partner.validate_vpa
+            %td#msg-error
+              = error_message_for(@partner, :validate_vpa, :prepend_text => "")
+          %tr
+            %td.label Merchant Id
+            %td.value
+              = @partner.merchant_id
+            %td#msg-error
+              = error_message_for(@partner, :merchant_id, :prepend_text => "")    
+          %tr
             %td.label Will Whitelist
             %td.value
               = @partner.will_whitelist

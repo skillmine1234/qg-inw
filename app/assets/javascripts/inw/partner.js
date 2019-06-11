@@ -26,6 +26,17 @@ $(document).ready(function(){
     }
   });
 
+ $("#partner_allow_upi").on("click", function () {
+  if($('#partner_allow_upi').is(":checked"))
+  {
+    $('#partner_merchant_id').prop('disabled',false);
+   }
+   else
+   {
+    $('#partner_merchant_id').prop('disabled',true);
+   }
+ });
+
   $("#partner_notify_on_status_change").on("click", function () {
     if(!$('#partner_notify_on_status_change').is(":checked")){
       $('#partner_app_code').val('');

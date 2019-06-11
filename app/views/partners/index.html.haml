@@ -28,6 +28,10 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       IMPS Allowed?
     %th{:style=>'text-align:left; background-color: lightblue;'}
+      UPI Allowed?
+    %th{:style=>'text-align:left; background-color: lightblue;'}
+      Validate VPA?  
+    %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated by
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
@@ -56,6 +60,10 @@
           = partner.allow_rtgs
         %td{:style=>'text-align:left;'}
           = partner.allow_imps
+        %td{:style=>'text-align:left;'}
+          = partner.allow_upi
+        %td{:style=>'text-align:left;'}
+          = partner.validate_vpa  
         %td{:style=>'text-align:left;'}
           = partner.updated_user.try(:username)
         %td{:style=>'text-align:left;'}

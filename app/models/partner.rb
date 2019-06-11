@@ -51,6 +51,7 @@ class Partner < ActiveRecord::Base
   validate :should_allow_neft?, if: "allow_neft=='Y'"
   validate :should_allow_imps?, if: "allow_imps=='Y'"
   validate :auto_resch_and_service_name
+  validates_presence_of :merchant_id, if: "allow_upi == 'Y'"
   
   after_create :create_lcy_rate
 
