@@ -13,7 +13,14 @@ class Partner < ActiveRecord::Base
       end
     end     
   end
-
+ 
+  validate :merchant_id_on_edit
+  
+  def merchant_id_on_edit
+    if allow_upi == "N"
+      self.merchant_id = nil
+    end
+  end
 
   belongs_to :created_user, :foreign_key =>'created_by', :class_name => 'User'
   belongs_to :updated_user, :foreign_key =>'updated_by', :class_name => 'User'

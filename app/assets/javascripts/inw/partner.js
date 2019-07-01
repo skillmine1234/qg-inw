@@ -1,4 +1,11 @@
 $(document).ready(function(){
+  $('#partner_validate_vpa').prop("disabled",true);
+  if($('#partner_allow_upi').is(":checked"))
+  {
+    $('#partner_validate_vpa').prop("disabled",false);
+    $('#partner_merchant_id').prop("disabled",false);
+
+  }
   $('#partner_sender_rc').prop('readOnly',true);
   if(!$('#partner_allow_imps').is(":checked")){
     $('#partner_mmid').prop('disabled',true);
@@ -30,10 +37,14 @@ $(document).ready(function(){
   if($('#partner_allow_upi').is(":checked"))
   {
     $('#partner_merchant_id').prop('disabled',false);
+    $('#partner_validate_vpa').prop("disabled",false);
    }
    else
    {
     $('#partner_merchant_id').prop('disabled',true);
+    $('#partner_validate_vpa').prop("disabled",true);
+    $('#partner_merchant_id').val('');
+    $('#partner_validate_vpa').prop("checked",false);
    }
  });
 
