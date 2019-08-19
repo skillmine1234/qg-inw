@@ -9,6 +9,7 @@ class InwardRemittanceSearcher < Searcher
   as_enum :notify_status, [:'PENDING NOTIFICATION', :'NOTIFIED:REJECTED', :"NOTIFIED:OK", :'NOTIFICATION FAILED'], map: :string, source: :notify_status
   as_enum :req_transfer_type, [:NEFT, :IMPS, :RTGS, :FT], map: :string, source: :req_transfer_type
   as_enum :transfer_type, [:NEFT, :IMPS, :RTGS, :FT], map: :string, source: :transfer_type
+  TRANSFERTYPE = [:NEFT, :IMPS, :RTGS, :FT, :UPI]
 
 
   def find

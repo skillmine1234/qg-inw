@@ -10,7 +10,7 @@
   = f.input :bank_ref
   = f.input :rmtr_full_name
   = f.input :req_transfer_type
-  = f.input :transfer_type, as: :enum
+  = f.input :transfer_type, collection: InwardRemittanceSearcher::TRANSFERTYPE
   = f.input :transfer_amount, as: :between
   = f.input :req_timestamp, as: :between
   = f.action_buttons
