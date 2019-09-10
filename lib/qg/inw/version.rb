@@ -1,5 +1,5 @@
 module Qg
   module Inw
-    VERSION = "3.0.26"
+    VERSION = "3.0.27"
   end
 end

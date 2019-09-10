@@ -4,23 +4,23 @@ class InwRemittanceRule < ActiveRecord::Base
   belongs_to :created_user, :foreign_key =>'created_by', :class_name => 'User'
   belongs_to :updated_user, :foreign_key =>'updated_by', :class_name => 'User'
   validates_format_of :pattern_beneficiaries, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
-  validates_format_of :pattern_beneficiaries_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
+  # validates_format_of :pattern_beneficiaries_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
   validates_format_of :pattern_corporates, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
-  validates_format_of :pattern_corporates_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
+  # validates_format_of :pattern_corporates_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
   validates_format_of :pattern_individuals, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
-  validates_format_of :pattern_individuals_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
+  # validates_format_of :pattern_individuals_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
   validates_format_of :pattern_remitters, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
-  validates_format_of :pattern_remitters_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
+  # validates_format_of :pattern_remitters_1, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
   validates_format_of :pattern_salutations, :with => /\A\w[\w\-\(\)\s\r\n]*\z/, :allow_blank => true
 
-  validates_length_of :pattern_beneficiaries, maximum: 4000
-  validates_length_of :pattern_beneficiaries_1, maximum: 4000
-  validates_length_of :pattern_corporates, maximum: 4000
-  validates_length_of :pattern_corporates_1, maximum: 4000
-  validates_length_of :pattern_individuals, maximum: 4000
-  validates_length_of :pattern_individuals_1, maximum: 4000
-  validates_length_of :pattern_remitters, maximum: 4000
-  validates_length_of :pattern_remitters_1, maximum: 4000
+  # validates_length_of :pattern_beneficiaries, maximum: 4000
+  # validates_length_of :pattern_beneficiaries_1, maximum: 4000
+  # validates_length_of :pattern_corporates, maximum: 4000
+  # validates_length_of :pattern_corporates_1, maximum: 4000
+  # validates_length_of :pattern_individuals, maximum: 4000
+  # validates_length_of :pattern_individuals_1, maximum: 4000
+  # validates_length_of :pattern_remitters, maximum: 4000
+  # validates_length_of :pattern_remitters_1, maximum: 4000
 
   before_validation :squish_patterns
 

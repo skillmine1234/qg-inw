@@ -66,7 +66,6 @@ class InwRemittanceRulesController < ApplicationController
   private
 
   def inw_remittance_rule_params
-    params.require(:inw_remittance_rule).permit(:pattern_individuals,:pattern_individuals_1, :pattern_corporates, :pattern_corporates_1, :pattern_beneficiaries, :pattern_beneficiaries_1, :created_by,
-                                 :updated_by, :lock_version, :pattern_salutations, :pattern_remitters, :pattern_remitters_1, :approved_id, :approved_version)
+    params.require(:inw_remittance_rule).permit(:pattern_individuals, :pattern_corporates, :pattern_beneficiaries, :created_by, :updated_by, :lock_version, :pattern_salutations, :pattern_remitters, :approved_id, :approved_version)
   end
 end

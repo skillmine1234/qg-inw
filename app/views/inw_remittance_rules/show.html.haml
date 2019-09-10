@@ -26,23 +26,11 @@
             %td#msg-error
               = error_message_for(@inw_remittance_rule, :pattern_individuals, :prepend_text => "")
           %tr
-            %td.label Disallowed Keywords in Name for Individuals more than 4000 characters
-            %td.value
-              = @inw_remittance_rule.pattern_individuals_1
-            %td#msg-error
-              = error_message_for(@inw_remittance_rule, :pattern_individuals_1, :prepend_text => "")
-          %tr
             %td.label Required Keywords in Name for Corporates
             %td.value
               = @inw_remittance_rule.pattern_corporates
             %td#msg-error
               = error_message_for(@inw_remittance_rule, :pattern_corporates, :prepend_text => "")
-          %tr
-            %td.label Required Keywords in Name for Corporates more than 4000 characters
-            %td.value
-              = @inw_remittance_rule.pattern_corporates_1
-            %td#msg-error
-              = error_message_for(@inw_remittance_rule, :pattern_corporates_1, :prepend_text => "")
           %tr
             %td.label Disallowed Keywords in Name for Beneficiaries
             %td.value
@@ -50,23 +38,11 @@
             %td#msg-error
               = error_message_for(@inw_remittance_rule, :pattern_beneficiaries, :prepend_text => "")
           %tr
-            %td.label Disallowed Keywords in Name for Beneficiaries more than 4000 characters
-            %td.value
-              = @inw_remittance_rule.pattern_beneficiaries_1
-            %td#msg-error
-              = error_message_for(@inw_remittance_rule, :pattern_beneficiaries_1, :prepend_text => "")
-          %tr
             %td.label Disallowed Keywords in Name for Remitters
             %td.value
               = @inw_remittance_rule.pattern_remitters
             %td#msg-error
               = error_message_for(@inw_remittance_rule, :pattern_remitters, :prepend_text => "")
-          %tr
-            %td.label Disallowed Remitter Name more than 4000 characters
-            %td.value
-              = @inw_remittance_rule.pattern_remitters_1
-            %td#msg-error
-              = error_message_for(@inw_remittance_rule, :pattern_remitters_1, :prepend_text => "")
           %tr
             %td.label Known Salutions For Individuals
             %td.value
