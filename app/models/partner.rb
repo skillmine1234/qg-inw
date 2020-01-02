@@ -2,7 +2,7 @@ class Partner < ActiveRecord::Base
   include Approval2::ModelAdditions
   include ServiceNotification
 
-  SERVICE_NAMES = %w(INW INW2 RIPPLE)
+  SERVICE_NAMES = %w(INW INW2 RPL ANTFN)
 
   validate :name_of_service
 
@@ -32,6 +32,9 @@ class Partner < ActiveRecord::Base
                         :allow_imps, :allow_neft, :allow_rtgs, :country, :account_ifsc,
                         :identity_user_id, :add_req_ref_in_rep, :add_transfer_amt_in_rep,
                         :notify_on_status_change
+  validates_presence_of :sender_mid, :liquidity_provider_id, :anchorid, :receiver_mid, if: lambda {|partner| partner.service_name == 'ANTFIN'}
+
+  validates_presence_of :sender_rc, if: lambda {|partner| partner.service_name == 'RPL'}
   validates_uniqueness_of :code, :scope => :approval_status
   validates :low_balance_alert_at, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => '9e20'.to_f, :allow_nil => true }
   validates :account_no, :numericality => {:only_integer => true}, length: {in: 10..16}
@@ -55,7 +58,7 @@ class Partner < ActiveRecord::Base
   
   validate :presence_of_iam_cust_user
   
-  validate :should_allow_neft?, if: "allow_neft=='Y'"
+  # validate :should_allow_neft?, if: "allow_neft=='Y'"
   validate :should_allow_imps?, if: "allow_imps=='Y'"
   validate :auto_resch_and_service_name
   validates_presence_of :merchant_id, if: "allow_upi == 'Y'"

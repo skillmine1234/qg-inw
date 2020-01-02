@@ -21,7 +21,7 @@ class PartnersController < ApplicationController
     @partner = Partner.new(params[:partner])
 
     if !@partner.valid?
-      render "new"
+      render :new
     else
       if params[:partner][:service_name] == "RIPPLE"
         @partner.service_name = "INW"
@@ -101,9 +101,10 @@ class PartnersController < ApplicationController
                                     :txn_hold_period_days, :updated_by, :lock_version, :enabled, :customer_id,
                                     :country, :address_line1, :address_line2, :address_line3,:mmid, :mobile_no,
                                     :add_req_ref_in_rep, :add_transfer_amt_in_rep, :approved_id, :approved_version,
-                                    :notify_on_status_change, :app_code, :service_name, :guideline_id, :will_whitelist,
-                                    :will_send_id, :hold_for_whitelisting, :hold_period_days, :auto_match_rule,
-                                    :notification_sent_at, :auto_reschdl_to_next_wrk_day, :reply_with_bene_name,
-                                    :beneficiary_sms_allowed,:beneficiary_email_allowed,:sender_rc,:allow_upi, :validate_vpa, :merchant_id)
+                                    :notify_on_status_change, :app_code, :service_name, :guideline_id,
+                                    :will_whitelist,:will_send_id, :hold_for_whitelisting, :hold_period_days,
+                                    :auto_match_rule, :notification_sent_at, :auto_reschdl_to_next_wrk_day,
+                                    :reply_with_bene_name,:sender_rc, :allow_upi, :validate_vpa, :merchant_id,
+                                    :connector_account, :sender_mid, :liquidity_provider_id, :anchorid, :receiver_mid)
   end
 end
