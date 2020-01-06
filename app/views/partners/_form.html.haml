@@ -163,10 +163,10 @@
       #msg-error
         = error_message_for(@partner, :anchorid, :prepend_text => "")        
     .control-group
-      = f.label :liquidity_provider_id, "*Liquity Provider ID", :class => 'control-label'
-      = f.text_field :liquidity_provider_id, :maxlength => 100, :disabled => f.object.service_name != 'ANTFN'
+      = f.label :liquity_provider_id, "*Liquity Provider ID", :class => 'control-label'
+      = f.text_field :liquity_provider_id, :maxlength => 100, :disabled => f.object.service_name != 'ANTFN'
       #msg-error
-        = error_message_for(@partner, :liquidity_provider_id, :prepend_text => "")
+        = error_message_for(@partner, :liquity_provider_id, :prepend_text => "")
     .control-group
       =# f.label :connector_account, "*Ripple Account Name", :class => 'control-label'
       = #f.text_field :connector_account, :maxlength => 30, :disabled => f.object.service_name != 'RPL'

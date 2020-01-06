@@ -32,7 +32,7 @@ class Partner < ActiveRecord::Base
                         :allow_imps, :allow_neft, :allow_rtgs, :country, :account_ifsc,
                         :identity_user_id, :add_req_ref_in_rep, :add_transfer_amt_in_rep,
                         :notify_on_status_change
-  validates_presence_of :sender_mid, :liquidity_provider_id, :anchorid, :receiver_mid, if: lambda {|partner| partner.service_name == 'ANTFIN'}
+  validates_presence_of :sender_mid, :liquity_provider_id, :anchorid, :receiver_mid, if: lambda {|partner| partner.service_name == 'ANTFIN'}
 
   validates_presence_of :sender_rc, if: lambda {|partner| partner.service_name == 'RPL'}
   validates_uniqueness_of :code, :scope => :approval_status

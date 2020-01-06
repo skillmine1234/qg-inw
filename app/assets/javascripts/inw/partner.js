@@ -189,13 +189,13 @@ $(document).ready(function(){
 
     if ($('#partner_service_name').val() == 'ANTFN'){
       $('#partner_sender_mid').prop('disabled',false);
-      $('#partner_liquidity_provider_id').prop('disabled',false);
+      $('#partner_liquity_provider_id').prop('disabled',false);
       $('#partner_anchorid').prop('disabled',false);
       $('#partner_receiver_mid').prop('disabled',false);
     }
     else{
       $('#partner_sender_mid').prop('disabled',true);
-      $('#partner_liquidity_provider_id').prop('disabled',true);
+      $('#partner_liquity_provider_id').prop('disabled',true);
       $('#partner_anchorid').prop('disabled',true);
       $('#partner_receiver_mid').prop('disabled',true);
     }
