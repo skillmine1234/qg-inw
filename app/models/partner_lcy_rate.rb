@@ -21,12 +21,12 @@ class PartnerLcyRate < ActiveRecord::Base
   end
 
   def self.read_username
-    username = ActiveRecord::Base.connection.execute("select value from esb_config where key='url_user'")
+    username = ActiveRecord::Base.connection.execute("select http_username from sc_backends where code='SERVICE_CENTER_APP'")
     return username.fetch.first
   end
 
   def self.read_password
-    password = ActiveRecord::Base.connection.execute("select value from esb_config where key='url_password'")
-    return password.fetch.first
+    password = ActiveRecord::Base.connection.execute("select http_password from sc_backends where code='SERVICE_CENTER_APP'")
+    return DecPassGenerator.new(password.fetch.first,ENV['CONSUMER_KEY'], ENV['CONSUMER_SECRET']).generate_decrypted_data if password.present?
   end
 end

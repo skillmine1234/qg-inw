@@ -211,7 +211,25 @@
             %td.value
               = @partner.sender_rc
             %td#msg-error
-              = error_message_for(@partner, :sender_rc, :prepend_text => "")    
+              = error_message_for(@partner, :sender_rc, :prepend_text => "")
+          %tr
+            %td.label Sender MID
+            %td.value
+              = @partner.sender_mid
+            %td#msg-error
+              = error_message_for(@partner, :sender_mid, :prepend_text => "")     
+          %tr
+            %td.label Anchor MID
+            %td.value
+              = @partner.anchorid
+            %td#msg-error
+              = error_message_for(@partner, :anchorid, :prepend_text => "")   
+          %tr
+            %td.label Liquity Provider ID
+            %td.value
+              = @partner.liquity_provider_id
+            %td#msg-error
+              = error_message_for(@partner, :liquity_provider_id, :prepend_text => "")
           %tr
             %td.label Auto Reschedule To Next Work Day?
             %td
