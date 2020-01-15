@@ -157,8 +157,10 @@ class Partner < ActiveRecord::Base
   end
 
   def get_service_name(sender_rc_value,partner_service_name)
-    if sender_rc_value.present?
-       return "RIPPLE"
+    if sender_rc_value.present? && !sender_mid.present? 
+       return "RPL"
+    elsif sender_mid.present? && receiver_mid.present? && anchorid.present? && liquity_provider_id.present?    
+      return "ANTFN"
     else
         return partner_service_name
     end

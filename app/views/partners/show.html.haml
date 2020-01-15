@@ -217,7 +217,13 @@
             %td.value
               = @partner.sender_mid
             %td#msg-error
-              = error_message_for(@partner, :sender_mid, :prepend_text => "")     
+              = error_message_for(@partner, :sender_mid, :prepend_text => "")
+          %tr
+            %td.label Receiver MID
+            %td.value
+              = @partner.receiver_mid
+            %td#msg-error
+              = error_message_for(@partner, :receiver_mid, :prepend_text => "")            
           %tr
             %td.label Anchor MID
             %td.value
