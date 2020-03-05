@@ -6,7 +6,7 @@
 %br
 = "Total Count: #{@banks_count}"
 %br
-= will_paginate @banks
+= will_paginate @banks, :page_links => true
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead

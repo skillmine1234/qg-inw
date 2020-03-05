@@ -3,7 +3,7 @@
 %br
 = "Total Count: #{@inw_guidelines_count}"
 %br
-= will_paginate @inw_guidelines
+= will_paginate @inw_guidelines, :page_links => true
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead

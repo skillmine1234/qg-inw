@@ -7,7 +7,7 @@
 = "Total Count: #{@results_count}"
 %br
 - unless @results.nil?
-  = will_paginate @results
+  = will_paginate @results, :page_links => true
   %br
   %table.table.table-bordered.table-striped.table-hover
     .thead
