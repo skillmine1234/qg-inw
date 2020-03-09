@@ -7,7 +7,7 @@
   = f.input :bene_account_no
   = f.input :bene_account_ifsc
   = f.action_buttons
-= pagination_links(@records)
+= will_paginate @records, :page_links => true
 
 - if @searcher.errors.present?
   :javascript
