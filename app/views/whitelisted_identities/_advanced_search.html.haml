@@ -7,6 +7,7 @@
   = f.input :bene_account_no
   = f.input :bene_account_ifsc
   = f.action_buttons
+= "Total Count: #{@records.count}"
 = will_paginate @records, :page_links => true
 
 - if @searcher.errors.present?
