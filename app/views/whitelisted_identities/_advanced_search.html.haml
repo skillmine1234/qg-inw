@@ -13,3 +13,8 @@
 - if @searcher.errors.present?
   :javascript
     $('.collapsible-content').show();
+
+:javascript
+  $(document).ready(function(){
+    $('input[type="text"]'). attr("placeholder", "Multisearch Search Enabled");
+  });

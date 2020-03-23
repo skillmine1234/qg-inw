@@ -16,8 +16,8 @@ class WhitelistedIdentitySearcher < Searcher
   
   def find
     reln = approval_status == 'U' ? WhitelistedIdentity.joins(:partner).unscoped.where("approval_status =?",'U').order("whitelisted_identities.id desc") : WhitelistedIdentity.joins(:partner).order("whitelisted_identities.id desc")
-    reln = reln.where("partners.code=?", partner_code) if partner_code.present?
-    reln = reln.where("whitelisted_identities.full_name=?", name) if name.present?
+    reln = reln.where("partners.code IN (?)", partner_code.split(",").collect(&:strip)) if partner_code.present?
+    reln = reln.where("whitelisted_identities.full_name IN (?)", name.split(",").collect(&:strip)) if name.present?
     reln
   end
 end
