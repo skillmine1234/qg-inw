@@ -6,6 +6,9 @@
 %br
 = render :partial => 'advanced_search'
 %br
+= "Total Count: #{@purpose_codes.count}"
+= will_paginate @purpose_codes, :page_links => true
+%br
 %table.table.table-bordered.table-striped.table-hover
   .thead
     %th{:style=>'text-align:left; background-color: lightblue;'}
@@ -31,7 +34,7 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
   .tbody
-    - @records.each do |purpose_code|
+    - @purpose_codes.each do |purpose_code|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', purpose_code

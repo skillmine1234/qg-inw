@@ -10,6 +10,7 @@ class PartnerLcyRatesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
+  include PartnerLcyRateHelper
 
 
   def create
@@ -71,13 +72,22 @@ class PartnerLcyRatesController < ApplicationController
     @partner_lcy_rate = PartnerLcyRate.unscoped.find_by_id(params[:id])
   end
 
+  # def index
+  #   if request.get?
+  #     @searcher = PartnerLcyRateSearcher.new(params.permit(:page, :approval_status))
+  #   else
+  #     @searcher = PartnerLcyRateSearcher.new(search_params)
+  #   end
+  #   @records = @searcher.paginate
+  # end
+
   def index
-    if request.get?
-      @searcher = PartnerLcyRateSearcher.new(params.permit(:page, :approval_status))
+    if params[:advanced_search].present?
+      partner_lcy_rates = find_partner_lcy_rates(params).order("id DESC")
     else
-      @searcher = PartnerLcyRateSearcher.new(search_params)
+      partner_lcy_rates = (params[:approval_status].present? and params[:approval_status] == 'U') ? PartnerLcyRate.unscoped.where("approval_status =?",'U').order("id desc") : PartnerLcyRate.order("id desc")
     end
-    @records = @searcher.paginate
+    @partner_lcy_rates = partner_lcy_rates.paginate(:per_page => 10, :page => params[:page]) rescue []
   end
 
   def audit_logs

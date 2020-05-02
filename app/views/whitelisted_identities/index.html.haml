@@ -4,6 +4,8 @@
 %h1 Listing Whitelisted Identities
 = render :partial => 'advanced_search'
 %br
+= "Total Count: #{@whitelisted_identities.count}"
+= will_paginate @whitelisted_identities, :page_links => true
 %br
 %table.table.table-bordered.table-striped.table-hover
   .thead
@@ -26,7 +28,7 @@
       Is Revoked ?
     %th{:style=>'text-align:left; background-color: lightblue;'}
   .tbody
-    - @records.each do |record|
+    - @whitelisted_identities.each do |record|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', record

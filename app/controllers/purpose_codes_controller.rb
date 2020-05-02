@@ -7,6 +7,7 @@ class PurposeCodesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
+  include PurposeCodeHelper
   
   def new
     @purpose_code = PurposeCode.new
@@ -50,12 +51,12 @@ class PurposeCodesController < ApplicationController
   end
 
   def index
-    if request.get?
-      @searcher = PurposeCodeSearcher.new(params.permit(:page, :approval_status))
+    if params[:advanced_search].present?
+      purpose_codes = find_purpose_codes(params).order("id DESC")
     else
-      @searcher = PurposeCodeSearcher.new(search_params)
+      purpose_codes = (params[:approval_status].present? and params[:approval_status] == 'U') ? PurposeCode.unscoped.where("approval_status =?",'U').order("id desc") : PurposeCode.order("id desc")
     end
-    @records = @searcher.paginate
+    @purpose_codes = purpose_codes.paginate(:per_page => 10, :page => params[:page]) rescue []
   end
 
   def audit_logs

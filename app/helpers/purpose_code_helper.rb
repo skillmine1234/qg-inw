@@ -19,4 +19,12 @@ module PurposeCodeHelper
       "Corporates"
     end
   end
+
+  def find_purpose_codes(params)
+    purpose_codes = (params[:approval_status].present? and params[:approval_status] == 'U') ? PurposeCode.unscoped : PurposeCode
+    purpose_codes = purpose_codes.where("is_enabled = ?", params[:is_enabled]) if params[:is_enabled].present?
+    purpose_codes = purpose_codes.where("code IN (?)",params[:code].split(",").collect(&:strip)) if params[:code].present?
+    purpose_codes
+  end
+
 end

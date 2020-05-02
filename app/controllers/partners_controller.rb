@@ -7,6 +7,7 @@ class PartnersController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
+  include PartnerHelper
 
   def new
     @partner = Partner.new
@@ -62,12 +63,12 @@ class PartnersController < ApplicationController
   end
 
   def index
-    if request.get?
-      @searcher = PartnerSearcher.new(params.permit(:page, :approval_status))
+    if params[:advanced_search].present?
+      partners = find_partners(params).order("id DESC")
     else
-      @searcher = PartnerSearcher.new(search_params)
+      partners = (params[:approval_status].present? and params[:approval_status] == 'U') ? Partner.unscoped.where("approval_status =?",'U').order("id desc") : Partner.order("id desc")
     end
-    @records = @searcher.paginate
+    @partners = partners.paginate(:per_page => 10, :page => params[:page]) rescue []
   end
 
   def audit_logs

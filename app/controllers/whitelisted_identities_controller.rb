@@ -8,6 +8,7 @@ class WhitelistedIdentitiesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
+  include WhitelistedIdentityHelper
 
   def new
     @whitelisted_identity = WhitelistedIdentity.new
@@ -63,14 +64,12 @@ class WhitelistedIdentitiesController < ApplicationController
   end
 
   def index
-    if request.get?
-      # only 'safe/non-personal' parameters are allowed as search parameters in a query string
-      @searcher = WhitelistedIdentitySearcher.new(params.permit(:approval_status, :page))
+    if params[:advanced_search].present?
+      whitelisted_identities = find_whitelisted_identities(params).order("whitelisted_identities.id DESC")
     else
-      # rest parameters are in post
-      @searcher = WhitelistedIdentitySearcher.new(search_params)
+      whitelisted_identities = (params[:approval_status].present? and params[:approval_status] == 'U') ? WhitelistedIdentity.unscoped.where("approval_status =?",'U').order("id desc") : WhitelistedIdentity.order("id desc")
     end
-    @records = @searcher.paginate
+    @whitelisted_identities = whitelisted_identities.paginate(:per_page => 10, :page => params[:page]) rescue []
   end
 
   def show

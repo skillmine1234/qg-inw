@@ -5,6 +5,9 @@
 %br
 = render :partial => 'advanced_search'
 %br
+= "Total Count: #{@partners.count}"
+= will_paginate @partners, :page_links => true
+%br
 %table.table.table-bordered.table-striped.table-hover
   .thead
     %th{:style=>'text-align:left; background-color: lightblue;'}
@@ -36,7 +39,7 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated At
   .tbody
-    - @records.each do |partner|
+    - @partners.each do |partner|
       %tr
         %td{:style=>'text-align:left;'}
           = link_to 'Show', partner
