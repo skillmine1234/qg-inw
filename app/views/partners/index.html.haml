@@ -2,8 +2,11 @@
 = link_to 'New Partner', new_partner_path
 %br
 %h1 Listing partners
-%br
-= render :partial => 'advanced_search'
+%h2.collapsible
+  Advanced Search
+  %span.caret
+.collapsible-content
+  = render :partial => 'advanced_search'
 %br
 = "Total Count: #{@partners.count}"
 = will_paginate @partners, :page_links => true

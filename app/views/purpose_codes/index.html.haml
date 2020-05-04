@@ -3,8 +3,11 @@
 %br
 %br
 %h1 Listing Purpose Codes
-%br
-= render :partial => 'advanced_search'
+%h2.collapsible
+  Advanced Search
+  %span.caret
+.collapsible-content
+  = render :partial => 'advanced_search'
 %br
 = "Total Count: #{@purpose_codes.count}"
 = will_paginate @purpose_codes, :page_links => true

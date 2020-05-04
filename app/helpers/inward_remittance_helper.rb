@@ -28,4 +28,24 @@ module InwardRemittanceHelper
       link_to 'show', whitelisted_identity_path(wl_id)
     end
   end
+
+  def find_inward_remittances(params)
+    inward_remittances = (params[:approval_status].present? and params[:approval_status] == 'U') ? InwardRemittance.unscoped : InwardRemittance
+    inward_remittances = inward_remittances.where("partner_code IN (?)",params[:partner_code].split(",").collect(&:strip)) if params[:partner_code].present?
+    inward_remittances = inward_remittances.where("status_code = ?", params[:status_code]) if params[:status_code].present?
+    inward_remittances = inward_remittances.where("notify_status = ?", params[:notify_status]) if params[:notify_status].present?
+    inward_remittances = inward_remittances.where("req_no IN (?)",params[:request_no].split(",").collect(&:strip)) if params[:request_no].present?
+    inward_remittances = inward_remittances.where("rmtr_code IN (?)",params[:rmtr_code].split(",").collect(&:strip)) if params[:rmtr_code].present?
+    inward_remittances = inward_remittances.where("bene_account_no IN (?)",params[:bene_account_no].split(",").collect(&:strip)) if params[:bene_account_no].present?
+    inward_remittances = inward_remittances.where("bene_account_ifsc IN (?)",params[:bene_account_ifsc].split(",").collect(&:strip)) if params[:bene_account_ifsc].present?
+    inward_remittances = inward_remittances.where("bank_ref IN (?)",params[:bank_ref].split(",").collect(&:strip)) if params[:bank_ref].present?
+    inward_remittances = inward_remittances.where("rmtr_full_name IN (?)",params[:rmtr_full_name].split(",").collect(&:strip)) if params[:rmtr_full_name].present?
+    inward_remittances = inward_remittances.where("req_transfer_type IN (?)",params[:req_transfer_type].split(",").collect(&:strip)) if params[:req_transfer_type].present?
+    inward_remittances = inward_remittances.where("transfer_type = ?", params[:transfer_type]) if params[:transfer_type].present?
+    inward_remittances = inward_remittances.where("transfer_amount>=? and transfer_amount<=?",params[:from_transfer_amount].to_f,params[:to_transfer_amount].to_f) if params[:from_transfer_amount].present? and params[:to_transfer_amount].present?
+    inward_remittances = inward_remittances.where("req_timestamp>=? and req_timestamp<=?",Time.zone.parse(params[:from_req_timestamp]).beginning_of_day,Time.zone.parse(params[:to_req_timestamp]).end_of_day) if params[:from_req_timestamp].present? and params[:to_req_timestamp].present?
+    inward_remittances
+  end
+
+
 end

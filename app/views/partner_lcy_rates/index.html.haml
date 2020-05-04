@@ -13,8 +13,12 @@
 
 %br
 %h1 Listing partner lcy rates
+%h2.collapsible
+  Advanced Search
+  %span.caret
+.collapsible-content
+  = render :partial => 'advanced_search'
 %br
-= render :partial => 'advanced_search'
 = "Total Count: #{@partner_lcy_rates.count}"
 = will_paginate @partner_lcy_rates, :page_links => true
 %br

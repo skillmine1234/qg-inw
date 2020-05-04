@@ -18,6 +18,15 @@ class InwardRemittancesController < ApplicationController
     end
     @records = @searcher.paginate
   end
+
+  def index
+    if params[:advanced_search].present?
+      inward_remittances = find_inward_remittances(params).order("id DESC")
+    else
+      inward_remittances = (params[:approval_status].present? and params[:approval_status] == 'U') ? InwardRemittance.unscoped.where("approval_status =?",'U').order("id desc") : InwardRemittance.order("id desc")
+    end
+    @inward_remittances = inward_remittances.paginate(:per_page => 10, :page => params[:page]) rescue []
+  end
   
   # to reuse the view
   def identity
