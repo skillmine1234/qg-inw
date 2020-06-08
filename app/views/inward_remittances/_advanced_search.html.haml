@@ -40,9 +40,9 @@
     = text_field_tag :to_transfer_amount, params[:to_transfer_amount]
   .control-group
     = label_tag "Request Date", "Request Date", :class => 'control-label'
-    = date_field_tag(:from_req_timestamp, params[:from_req_timestamp])
+    = date_field_tag(:from_req_timestamp1, params[:from_req_timestamp1])
     To
-    = date_field_tag(:to_req_timestamp, params[:to_req_timestamp])
+    = date_field_tag(:to_req_timestamp1, params[:to_req_timestamp1])
   .form-actions
     = button_tag "Search", :class => 'btn btn-primary'
     = button_tag "Reset", :type => 'button', :value=>'Reset', :class => 'btn', :id => 'inward_remittance_reset'

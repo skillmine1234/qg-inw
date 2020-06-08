@@ -43,7 +43,7 @@ module InwardRemittanceHelper
     inward_remittances = inward_remittances.where("req_transfer_type IN (?)",params[:req_transfer_type].split(",").collect(&:strip)) if params[:req_transfer_type].present?
     inward_remittances = inward_remittances.where("transfer_type = ?", params[:transfer_type]) if params[:transfer_type].present?
     inward_remittances = inward_remittances.where("transfer_amount>=? and transfer_amount<=?",params[:from_transfer_amount].to_f,params[:to_transfer_amount].to_f) if params[:from_transfer_amount].present? and params[:to_transfer_amount].present?
-    inward_remittances = inward_remittances.where("req_timestamp>=? and req_timestamp<=?",Time.zone.parse(params[:from_req_timestamp]).beginning_of_day,Time.zone.parse(params[:to_req_timestamp]).end_of_day) if params[:from_req_timestamp].present? and params[:to_req_timestamp].present?
+    inward_remittances = inward_remittances.where("req_timestamp>=? and req_timestamp<=?",Time.zone.parse(params[:from_req_timestamp1]).beginning_of_day,Time.zone.parse(params[:to_req_timestamp1]).end_of_day) if params[:from_req_timestamp1].present? and params[:to_req_timestamp1].present?
     inward_remittances
   end
 
