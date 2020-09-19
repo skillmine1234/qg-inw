@@ -103,6 +103,6 @@ class PartnersController < ApplicationController
                                     :will_whitelist,:will_send_id, :hold_for_whitelisting, :hold_period_days,
                                     :auto_match_rule, :notification_sent_at, :auto_reschdl_to_next_wrk_day,
                                     :reply_with_bene_name,:sender_rc, :allow_upi, :validate_vpa, :merchant_id,
-                                    :connector_account, :sender_mid, :liquity_provider_id, :anchorid, :receiver_mid)
+                                    :connector_account, :sender_mid, :liquity_provider_id, :anchorid, :receiver_mid,:n10_notification_enabled)
   end
 end

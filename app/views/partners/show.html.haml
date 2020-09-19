@@ -302,3 +302,11 @@
               = @partner.notification_sent_at.try(:strftime, "%d/%m/%Y %I:%M%p")
             %td#msg-error
               = error_message_for(@partner, :notification_sent_at, :prepend_text => "")
+
+          %tr
+            %td.label N10 Notification? 
+            %td
+              = @partner.try(:n10_notification_enabled)
+            %td#msg-error
+              = error_message_for(@partner, :n10_notification_enabled, :prepend_text => "")    
+    
