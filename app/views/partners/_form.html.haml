@@ -263,7 +263,17 @@
     = link_to :Cancel,'/partners', :name => 'cancel', :class=>"cancel btn"
 
 :javascript
-  $(document).ready(function() {
-    disableUPIColumns();
-    $('#partner_allow_upi').on('change',disableUPIColumns);
+  $("#partner_allow_imps").on("click", function () {
+    if(!$('#partner_allow_imps').is(":checked")){
+      $('#partner_mmid').val('');
+      $('#partner_mobile_no').val('');
+      $('#partner_allow_imps').val('');
+      $('#partner_mmid').prop('disabled',true);
+      $('#partner_mobile_no').prop('disabled',true);
+    }
+    else{
+      $('#partner_mobile_no').val('');
+      $('#partner_mmid').prop('disabled',false);
+      $('#partner_mobile_no').prop('disabled',false);
+    }
   });

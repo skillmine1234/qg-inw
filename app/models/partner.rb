@@ -29,7 +29,7 @@ class Partner < ActiveRecord::Base
 
   validates_presence_of :code, :enabled, :name, :account_no, :txn_hold_period_days,
                         :customer_id, :remitter_email_allowed, :remitter_sms_allowed,
-                        :allow_imps, :allow_neft, :allow_rtgs, :country, :account_ifsc,
+                        :allow_neft, :allow_rtgs, :country, :account_ifsc,
                         :identity_user_id, :add_req_ref_in_rep, :add_transfer_amt_in_rep,
                         :notify_on_status_change
   validates_presence_of :sender_mid, :liquity_provider_id, :anchorid, :receiver_mid, if: lambda {|partner| partner.service_name == 'ANTFIN'}
@@ -50,7 +50,7 @@ class Partner < ActiveRecord::Base
   validates_length_of :add_req_ref_in_rep, :add_transfer_amt_in_rep, minimum: 1, maximum: 1
   
 
-  validate :imps_and_mmid
+  # validate :imps_and_mmid
   validate :check_email_addresses
   
   validate :whitelisting
@@ -59,7 +59,7 @@ class Partner < ActiveRecord::Base
   validate :presence_of_iam_cust_user
   
   # validate :should_allow_neft?, if: "allow_neft=='Y'"
-  validate :should_allow_imps?, if: "allow_imps=='Y'"
+  # validate :should_allow_imps?, if: "allow_imps=='Y'"
   validate :auto_resch_and_service_name
   validates_presence_of :merchant_id, if: "allow_upi == 'Y'"
   
