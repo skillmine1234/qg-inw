@@ -82,6 +82,7 @@
       #msg-error
         = error_message_for(@purpose_code, :pattern_allowed_benes, :prepend_text => "")
   .form-actions
-    = f.button "submit" ,:class=>"btn btn-primary", :id => 'submit_purpose_code'
+    - (f.object.new_record? and f.object.code.nil?) ? label_name = "Create" : label_name = "Update"
+    = f.button "submit" ,:class=>"btn btn-primary", :id => 'submit_purpose_code', :value => label_name + ' Purpose Code'
     = link_to :Cancel,'/purpose_codes', :name => 'cancel', :class=>"cancel btn"
 
