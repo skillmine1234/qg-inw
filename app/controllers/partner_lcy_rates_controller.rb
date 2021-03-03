@@ -44,28 +44,63 @@ class PartnerLcyRatesController < ApplicationController
   end 
 
   def update_lcy_for_mtss
+    puts "---------- Update LCY rate"
     begin
-      mtss_url = PartnerLcyRate.mtss_url
-      username = PartnerLcyRate.read_username
-      password = PartnerLcyRate.read_password
+    ######## IDP CALL ###########################
+
+    username = PartnerLcyRate.read_username
+    password = PartnerLcyRate.read_password
+
+    api_url = ENV['LCY_RATE_URL']
+
+    uri = URI("#{api_url}")
+
+      headers  = {"X-IBM-Client-ID" => "#{ENV["IBM_CLIENT"]}","X-IBM-Client-Secret" => "#{ENV["CLIENT_SECRET"]}"}
+      
+      Net::HTTP.start(uri.host,uri.port,:use_ssl => uri.scheme == 'https',:verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
+        api_request = Net::HTTP::Post.new(uri.request_uri,headers)
+        api_request.basic_auth "#{username}","#{password}"
+        api_request.body = {}.to_json
+        api_response = http.request api_request 
+
         
-      uri = URI("#{mtss_url}")
-      Net::HTTP.start(uri.host, uri.port,
-                      :use_ssl => uri.scheme == 'https',
-                      :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
-                      request = Net::HTTP::Post.new uri.request_uri
-                      request.basic_auth "#{username}", "#{password}"
-                      request.body = {}.to_json
-                      @response = http.request request # Net::HTTPResponse object
-                      end
-                      if @response.code == "200"
-                        @text = "Rate Updated Successfully"
-                      else
-                        @text = "Service Failed Rate not updated"
-                      end
-  rescue Exception => e
-     @text = e.to_s
-  end
+        parse_json_res = JSON.parse(api_response.body) if api_response !=nil
+        puts "---------------------lcy rate response ---#{parse_json_res}"
+        if (api_response.code == "200" && api_response !=nil)
+          @text = "Rate Updated Successfully"
+        else
+          @text = "Service Failed Rate not updated"
+        end  
+      end
+
+    rescue Exception => e
+      puts "Exception during LCY rate update IDP API call ---#{e.inspect}"
+      return @text = e
+    end
+
+    ############# IHS CALL #####################
+    # begin
+    #   mtss_url = PartnerLcyRate.mtss_url
+    #   username = PartnerLcyRate.read_username
+    #   password = PartnerLcyRate.read_password
+        
+    #   uri = URI("#{mtss_url}")
+    #   Net::HTTP.start(uri.host, uri.port,
+    #                   :use_ssl => uri.scheme == 'https',
+    #                   :verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
+    #                   request = Net::HTTP::Post.new uri.request_uri
+    #                   request.basic_auth "#{username}", "#{password}"
+    #                   request.body = {}.to_json
+    #                   @response = http.request request # Net::HTTPResponse object
+    #                   end
+    #                   if @response.code == "200"
+    #                     @text = "Rate Updated Successfully"
+    #                   else
+    #                     @text = "Service Failed Rate not updated"
+    #                   end
+  # rescue Exception => e
+  #    @text = e.to_s
+  # end
   end
 
   def show
