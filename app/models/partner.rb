@@ -67,6 +67,11 @@ class Partner < ActiveRecord::Base
 
   alias_attribute :is_enabled, :enabled
 
+  validates_presence_of :non_working_day_limit, if: "neft_limit_check == 'Y'"
+  validates_presence_of :working_day_limit, if: "neft_limit_check == 'Y'"
+  validates :working_day_limit, :numericality => { :greater_than => 0}, if:"neft_limit_check == 'Y'"
+  validates :non_working_day_limit, :numericality => { :greater_than => 0}, if:"neft_limit_check == 'Y'"
+  
   def create_lcy_rate
     if partner_lcy_rate.nil?
       PartnerLcyRate.create(partner_code: code, rate: 1, approval_status: 'A')

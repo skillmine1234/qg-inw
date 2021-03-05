@@ -8,6 +8,21 @@
     = f.hidden_field :approved_id
     = f.hidden_field :approved_version
     .control-group
+      = f.label :neft_limit_check, "Neft Limit Check", :class => 'control-label'
+      = f.check_box :neft_limit_check, {},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :neft_limit_check, :prepend_text => "")
+    .control-group
+      = f.label :working_day_limit, "Working Day Limit", :class => 'control-label'
+      = f.text_field :working_day_limit, :maxlength => 20, :class => 'numbers'
+      #msg-error
+        = error_message_for(@partner, :working_day_limit, :prepend_text => "")
+    .control-group
+      = f.label :non_working_day_limit, "Non Working Day Limit", :class => 'control-label'
+      = f.text_field :non_working_day_limit, :maxlength => 20, :class => 'numbers'
+      #msg-error
+        = error_message_for(@partner, :non_working_day_limit, :prepend_text => "")
+    .control-group
       = f.label :code
       = f.text_field :code, :maxlength => 10
       #msg-error

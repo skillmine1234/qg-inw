@@ -205,4 +205,30 @@ $(document).ready(function(){
     $('#partner_txn_hold_period_days').val(0);
     $('#partner_txn_hold_period_days').prop('readOnly',true);
   }
+  if ($("#partner_neft_limit_check").is(':checked')){
+        $("#partner_working_day_limit").prop("disabled", false);
+        $("#partner_non_working_day_limit").prop("disabled", false);
+
+      } 
+    else{
+        $("#partner_working_day_limit").attr("value", "");
+        $("#partner_non_working_day_limit").attr("value", "");
+        $("#partner_working_day_limit").prop("disabled", true);
+        $("#partner_non_working_day_limit").prop("disabled", true);
+
+      }
+
+    $("#partner_neft_limit_check").click(function () {
+      if ($("#partner_neft_limit_check").is(':checked')){
+        $("#partner_working_day_limit").prop("disabled", false);
+        $("#partner_non_working_day_limit").prop("disabled", false);
+
+      } 
+      else{
+        $("#partner_working_day_limit").val('');
+        $("#partner_non_working_day_limit").val('');
+        $("#partner_working_day_limit").prop("disabled", true);
+        $("#partner_non_working_day_limit").prop("disabled", true);
+      }
+    });
 });

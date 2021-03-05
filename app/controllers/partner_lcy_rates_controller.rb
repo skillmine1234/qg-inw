@@ -52,15 +52,18 @@ class PartnerLcyRatesController < ApplicationController
     password = PartnerLcyRate.read_password
 
     api_url = ENV['LCY_RATE_URL']
+    puts "-----------------lcy url #{api_url}"
 
     uri = URI("#{api_url}")
 
       headers  = {"X-IBM-Client-ID" => "#{ENV["IBM_CLIENT"]}","X-IBM-Client-Secret" => "#{ENV["CLIENT_SECRET"]}"}
-      
+      puts "---------lcy headers #{headers}"
+
       Net::HTTP.start(uri.host,uri.port,:use_ssl => uri.scheme == 'https',:verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
         api_request = Net::HTTP::Post.new(uri.request_uri,headers)
         api_request.basic_auth "#{username}","#{password}"
         api_request.body = {}.to_json
+
         api_response = http.request api_request 
 
         
