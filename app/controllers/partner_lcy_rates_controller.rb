@@ -62,13 +62,13 @@ class PartnerLcyRatesController < ApplicationController
       Net::HTTP.start(uri.host,uri.port,:use_ssl => uri.scheme == 'https',:verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
         api_request = Net::HTTP::Post.new(uri.request_uri,headers)
         api_request.basic_auth "#{username}","#{password}"
-        api_request.body = {}.to_json
-
+        #api_request.body = {}.to_json
+        api_request["accept-encoding"] = "identity"
         api_response = http.request api_request 
 
         
-        parse_json_res = JSON.parse(api_response.body) if api_response !=nil
-        puts "---------------------lcy rate response ---#{parse_json_res}"
+        #parse_json_res = JSON.parse(api_response.body) if api_response !=nil
+        puts "---------------------lcy rate response ---#{api_response}"
         if (api_response.code == "200" && api_response !=nil)
           @text = "Rate Updated Successfully"
         else
