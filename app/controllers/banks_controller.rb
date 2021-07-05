@@ -63,6 +63,6 @@ class BanksController < ApplicationController
 
   def bank_params
     params.require(:bank).permit(:ifsc,:name,:imps_enabled, :created_by, :updated_by, :lock_version,
-                                 :approved_id, :approved_version,:upi_enabled)
+                                 :approved_id, :approved_version)
   end
 end

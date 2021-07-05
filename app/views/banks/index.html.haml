@@ -19,8 +19,6 @@
     %th{:style=>'text-align:left; background-color: lightblue;'}
       IMPS Enabled?
     %th{:style=>'text-align:left; background-color: lightblue;'}
-      UPI Enabled?  
-    %th{:style=>'text-align:left; background-color: lightblue;'}
       Created by
     %th{:style=>'text-align:left; background-color: lightblue;'}
       Updated by
@@ -41,8 +39,6 @@
           = bank.name
         %td{:style=>'text-align:left;'}
           = bank.imps_enabled?
-        %td{:style=>'text-align:left;'}
-          = bank.upi_enabled  
         %td{:style=>'text-align:left;'}
           = bank.created_user.try(:username)
         %td{:style=>'text-align:left;'}

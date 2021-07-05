@@ -36,13 +36,7 @@
             %td.value
               = @bank.imps_enabled?
             %td#msg-error
-              = error_message_for(@bank, :imps_enabled, :prepend_text => "")
-          %tr
-            %td.label UPI Enabled?
-            %td.value
-              = @bank.upi_enabled
-            %td#msg-error
-              = error_message_for(@bank, :upi_enabled, :prepend_text => "")    
+              = error_message_for(@bank, :imps_enabled, :prepend_text => "")    
           %tr
             %td.label Created By
             %td
