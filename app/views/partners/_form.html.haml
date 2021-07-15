@@ -155,7 +155,12 @@
       = f.label :n10_notification_enabled, "Credit Confirmation?", :class => 'control-label'
       = f.check_box :n10_notification_enabled, {},"Y","N"
       #msg-error
-        = error_message_for(@partner, :add_transfer_amt_in_rep, :prepend_text => "")    
+        = error_message_for(@partner, :n10_notification_enabled, :prepend_text => "")
+    .control-group
+      = f.label :notify_downtime, "Notify downTime?", :class => 'control-label'
+      = f.check_box :notify_downtime, {},"Y","N"
+      #msg-error
+        = error_message_for(@partner, :notify_downtime, :prepend_text => "")        
   .form-extended
     .control-group
       = f.label :service_name, "*Service Name", :class => 'control-label'

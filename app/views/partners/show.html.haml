@@ -308,5 +308,11 @@
             %td
               = @partner.try(:n10_notification_enabled)
             %td#msg-error
-              = error_message_for(@partner, :n10_notification_enabled, :prepend_text => "")    
+              = error_message_for(@partner, :n10_notification_enabled, :prepend_text => "")
+          %tr
+            %td.label Notify DownTime?
+            %td
+              = @partner.try(:notify_downtime)
+            %td#msg-error
+              = error_message_for(@partner, :notify_downtime, :prepend_text => "")        
     
