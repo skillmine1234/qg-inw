@@ -137,6 +137,17 @@ class PartnerLcyRatesController < ApplicationController
     redirect_to unapproved_records_path(group_name: 'inward-remittance')
   end
 
+  def tokenize_data_proc
+    puts "before pk_ybl_tokenisation----------"
+    begin
+      result = plsql.pk_ybl_tokenisation.initiate_rules_tokenisation()
+    rescue Exception => e
+      puts "pk_ybl_tokenisation error #{e}"
+    end
+    
+  end
+
+
   private    
     def search_params
       params.require(:partner_lcy_rate_searcher).permit( :page, :approval_status, :partner_code)

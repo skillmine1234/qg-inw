@@ -59,6 +59,8 @@ Rails.application.routes.draw do
       get :update_lcy_for_mtss
       get :index
       put :index
+      get :tokenize_data
+      get :tokenize_data_proc
     end
   end
 
