@@ -208,13 +208,17 @@ $(document).ready(function(){
   if ($("#partner_neft_limit_check").is(':checked')){
         $("#partner_working_day_limit").prop("disabled", false);
         $("#partner_non_working_day_limit").prop("disabled", false);
+        $("#partner_action_limit_breach").prop("disabled", false);
 
       } 
     else{
         $("#partner_working_day_limit").attr("value", "");
         $("#partner_non_working_day_limit").attr("value", "");
+        $("#partner_action_limit_breach").attr("value", "");
+
         $("#partner_working_day_limit").prop("disabled", true);
         $("#partner_non_working_day_limit").prop("disabled", true);
+        $("#partner_action_limit_breach").prop("disabled", true);
 
       }
 
@@ -222,13 +226,18 @@ $(document).ready(function(){
       if ($("#partner_neft_limit_check").is(':checked')){
         $("#partner_working_day_limit").prop("disabled", false);
         $("#partner_non_working_day_limit").prop("disabled", false);
+        $("#partner_action_limit_breach").prop("disabled", false);
 
       } 
       else{
         $("#partner_working_day_limit").val('');
         $("#partner_non_working_day_limit").val('');
+        $("#partner_action_limit_breach").val('');
+
         $("#partner_working_day_limit").prop("disabled", true);
         $("#partner_non_working_day_limit").prop("disabled", true);
+        $("#partner_action_limit_breach").prop("disabled", true);
+
       }
     });
 });

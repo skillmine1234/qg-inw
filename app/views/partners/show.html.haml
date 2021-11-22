@@ -314,5 +314,11 @@
             %td
               = @partner.try(:notify_downtime)
             %td#msg-error
-              = error_message_for(@partner, :notify_downtime, :prepend_text => "")        
+              = error_message_for(@partner, :notify_downtime, :prepend_text => "")  
+          %tr
+            %td.label Action On Limit Breach
+            %td
+              = @partner.try(:action_limit_breach)
+            %td#msg-error
+              = error_message_for(@partner, :action_limit_breach, :prepend_text => "")            
     
