@@ -8,6 +8,7 @@ en:
    inw_guideline: 'Inward Remittance Guideline'
    partner_lcy_rate: 'Partner LCY Rate'
    whitelisted_identity: 'Whitelisted Identity'
+   indivisual_rule: 'Indivisual Rule'
   enums:
     req_transfer_type: 
       NEFT: 'NEFT'
