@@ -1,5 +1,5 @@
 class IndivisualRule < ActiveRecord::Base
-	self.table_name = "inw_indivisuals_rules"
+	self.table_name = "inw_individuals_rules"
 	include Approval2::ModelAdditions
 	
 	belongs_to :created_user, :foreign_key =>'created_by', :class_name => 'User'
