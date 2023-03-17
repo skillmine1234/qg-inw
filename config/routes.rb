@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  resources :indivisual_rules do 
+    member do
+      get :audit_logs
+      put :approve
+    end
+  end  
+  
   resources :whitelisted_identities, except: [:index,:new] do
     member do
       get :audit_logs

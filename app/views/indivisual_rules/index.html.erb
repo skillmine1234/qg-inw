@@ -1,0 +1,59 @@
+<br/>
+<%= link_to 'New IndivisualRule', new_indivisual_rule_path %>
+<br/>
+<br/>
+<h1>Listing IndivisualRule</h1>
+<br/>
+<%= "Total Count: #{@indivisual_rule}" %>
+<br/>
+<%= will_paginate @indivisual_rules, :page_links => true %>
+<br/>
+<table class="table table-bordered table-striped table-hover">
+  <div class="thead">
+    <th style="text-align:left; background-color: lightblue;"></th>
+    <th style="text-align:left; background-color: lightblue;"></th>
+    <th style="text-align:left; background-color: lightblue;">
+      IFSC
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Created by
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Updated by
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Created At
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Updated At
+    </th>
+  </div>
+  <div class="tbody">
+    <% @indivisual_rules.each do |indivisual_rule| %>
+      <tr>
+        <td style="text-align:left;">
+          <%= link_to 'Show', indivisual_rule %>
+        </td>
+        <td style="text-align:left;">
+          <%= link_to 'Edit', edit_indivisual_rule_path(indivisual_rule) %>
+        </td>
+        <td style="text-align:left;">
+          <%= indivisual_rule.indivisuals %>
+        </td>
+      
+        <td style="text-align:left;">
+          <%= indivisual_rule.created_user.try(:username) %>
+        </td>
+        <td style="text-align:left;">
+          <%= indivisual_rule.updated_user.try(:username) %>
+        </td>
+        <td style="text-align:left;">
+          <%= indivisual_rule.created_at.strftime("%d/%m/%Y %I:%M%p") %>
+        </td>
+        <td style="text-align:left;">
+          <%= indivisual_rule.updated_at.strftime("%d/%m/%Y %I:%M%p") %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+</table>

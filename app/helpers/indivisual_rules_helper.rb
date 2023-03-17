@@ -1,0 +1,2 @@
+module IndivisualRulesHelper
+end
