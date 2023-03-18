@@ -10,10 +10,10 @@
     <%= f.hidden_field :approved_id %>
     <%= f.hidden_field :approved_version %>
     <div class="control-group">
-      <%= f.label :indivisuals, "*Indivisuals", :class => 'control-label' %>
-      <%= f.text_field :indivisuals %>
+      <%= f.label :individuals, "*Individuals", :class => 'control-label' %>
+      <%= f.text_area :individuals, :style => 'height:150px', :placeholder => "Enter the keywords " %>
       <div id="msg-error">
-        <%= error_message_for(@indivisual_rule, :indivisuals, :prepend_text => "") %>
+        <%= error_message_for(@indivisual_rule, :individuals, :prepend_text => "") %>
       </div>
     </div>
   </div>

@@ -62,7 +62,7 @@ class IndivisualRulesController < ApplicationController
   private
 
   def indivisual_rule_params
-    params.require(:indivisual_rule).permit(:indivisuals,:created_by, :updated_by, :lock_version,
+    params.require(:indivisual_rule).permit(:individuals,:created_by, :updated_by, :lock_version,
                                  :approved_id, :approved_version)
   end
 end

@@ -2,7 +2,7 @@
 <%= link_to 'New IndivisualRule', new_indivisual_rule_path %>
 <br/>
 <br/>
-<h1>Listing IndivisualRule</h1>
+<h1>Listing Individuals Rule</h1>
 <br/>
 <%= "Total Count: #{@indivisual_rule}" %>
 <br/>
@@ -13,7 +13,7 @@
     <th style="text-align:left; background-color: lightblue;"></th>
     <th style="text-align:left; background-color: lightblue;"></th>
     <th style="text-align:left; background-color: lightblue;">
-      IFSC
+      Individuals
     </th>
     <th style="text-align:left; background-color: lightblue;">
       Created by
@@ -38,7 +38,7 @@
           <%= link_to 'Edit', edit_indivisual_rule_path(indivisual_rule) %>
         </td>
         <td style="text-align:left;">
-          <%= indivisual_rule.indivisuals %>
+          <%= indivisual_rule.individuals %>
         </td>
       
         <td style="text-align:left;">
