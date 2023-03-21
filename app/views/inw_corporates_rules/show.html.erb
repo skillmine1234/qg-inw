@@ -1,0 +1,77 @@
+<div class="form-horizontal show_form">
+  <div class="form-main-with-color" style="background-color: #F1F2F8;">
+    <div id="form-details">
+      <h3>Inw Corporate Rule Details </h3>
+      <br/>
+      <p style="text-align:left; padding-left:6px; padding-bottom:17px">
+        <% can = can? :edit, @inw_corporates_rule %>
+        <a class="btn btn-primary <%= (can) ? '' : 'disabled' %> btn" href="<%= !(can) ? '#' : '/inw_corporates_rules/' + @inw_corporates_rule.id.to_s + '/edit' %>" role="button">Edit</a>
+        <%= render 'unapproved_records/approve', :@record => @inw_corporates_rule %>
+      </p>
+      <table class="table no-border" style="table-layout: fixed; width: 100%">
+        <% if !@inw_corporates_rule.nil? %>
+          <tr>
+            <td class="label">Version</td>
+            <td class="value">
+              <%= link_to "#{audit_count(@inw_corporates_rule)}", :controller => :inw_corporates_rules, :action => :audit_logs, :version_id => audit_count(@inw_corporates_rule), :id => @inw_corporates_rule.id %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Form Errors</td>
+            <td class="value">
+              <%= ' ' %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :base, :prepend_text => "") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Corporates</td>
+            <td class="value">
+              <%= @inw_corporates_rule.corporates %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :corporates, :prepend_text => "") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Created By</td>
+            <td>
+              <%= @inw_corporates_rule.created_user.try(:username) %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :created_by, :prepend_text => "") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Updated By</td>
+            <td>
+              <%= @inw_corporates_rule.updated_user.try(:username) %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :updated_by, :prepend_text => "") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Created At</td>
+            <td class="value">
+              <%= @inw_corporates_rule.created_at.strftime("%d/%m/%Y %I:%M%p") %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :created_at, :prepend_text => "") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Updated At</td>
+            <td class="value">
+              <%= @inw_corporates_rule.updated_at.strftime("%d/%m/%Y %I:%M%p") %>
+            </td>
+            <td id="msg-error">
+              <%= error_message_for(@inw_corporates_rule, :updated_at, :prepend_text => "") %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<br/>
+<%= link_to 'New Inw Corporates Rule', new_inw_corporates_rule_path %>
+<br/>
+<br/>
+<h1>Listing Corporates Rule</h1>
+<br/>
+<%= "Total Count: #{@inw_corporates_rule}" %>
+<br/>
+<%= will_paginate @inw_corporates_rules, :page_links => true %>
+<br/>
+<table class="table table-bordered table-striped table-hover">
+  <div class="thead">
+    <th style="text-align:left; background-color: lightblue;"></th>
+    <th style="text-align:left; background-color: lightblue;"></th>
+    <th style="text-align:left; background-color: lightblue;">
+      corporates
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Created by
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Updated by
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Created At
+    </th>
+    <th style="text-align:left; background-color: lightblue;">
+      Updated At
+    </th>
+  </div>
+  <div class="tbody">
+    <% @inw_corporates_rules.each do |inw_corporates_rule| %>
+      <tr>
+        <td style="text-align:left;">
+          <%= link_to 'Show', inw_corporates_rule %>
+        </td>
+        <td style="text-align:left;">
+          <%= link_to 'Edit', edit_inw_corporates_rule_path(inw_corporates_rule) %>
+        </td>
+        <td style="text-align:left;">
+          <%= inw_corporates_rule.corporates %>
+        </td>
+      
+        <td style="text-align:left;">
+          <%= inw_corporates_rule.created_user.try(:username) %>
+        </td>
+        <td style="text-align:left;">
+          <%= inw_corporates_rule.updated_user.try(:username) %>
+        </td>
+        <td style="text-align:left;">
+          <%= inw_corporates_rule.created_at.strftime("%d/%m/%Y %I:%M%p") %>
+        </td>
+        <td style="text-align:left;">
+          <%= inw_corporates_rule.updated_at.strftime("%d/%m/%Y %I:%M%p") %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+</table>

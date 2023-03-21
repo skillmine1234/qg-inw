@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :inw_beneficiaries_rules
+  resources :inw_corporates_rules
   resources :indivisual_rules do 
     member do
       get :audit_logs

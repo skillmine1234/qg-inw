@@ -52,7 +52,7 @@ class IndivisualRulesController < ApplicationController
 
   def audit_logs
     @indivisual_rule = IndivisualRule.unscoped.find(params[:id]) rescue nil
-    @audit = @indivisual_rules.audits[params[:version_id].to_i] rescue nil
+    @audit = @indivisual_rule.audits[params[:version_id].to_i] rescue nil
   end
 
   def approve

@@ -1,0 +1,24 @@
+<%= simple_form_for @inw_corporates_rule, :html => {:class=>'form-horizontal', :autocomplete=>"off", :id => "inw_corporates_rule_form"} do |f| %>
+  <div class="control-group">
+    <%= f.label ' ' %>
+    <div id="msg-error">
+      <%= error_message_for(@inw_corporates_rule, :base, :prepend_text => "") %>
+    </div>
+  </div>
+  <div class="form-main" style="width:100%">
+    <%= f.hidden_field :lock_version %>
+    <%= f.hidden_field :approved_id %>
+    <%= f.hidden_field :approved_version %>
+    <div class="control-group">
+      <%= f.label :corporates, "*Corporates", :class => 'control-label' %>
+      <%= f.text_area :corporates, :style => 'height:150px', :placeholder => "Enter the keywords " %>
+      <div id="msg-error">
+        <%= error_message_for(@inw_corporates_rule, :corporates, :prepend_text => "") %>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.button "submit" ,:class=>"btn btn-primary", :id => 'submit_partner' %>
+    <%= link_to :Cancel,'/inw_corporates_rules', :name => 'cancel', :class=>"cancel btn" %>
+  </div>
+<% end %>
