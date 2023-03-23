@@ -10,7 +10,7 @@ en:
    whitelisted_identity: 'Whitelisted Identity'
    indivisual_rule: 'Indivisual Rule'
    InwCorporatesRule: 'Corporates Rule'
-   InwBeneficiariesRules: 'Beneficiaries Rule'
+   InwBeneficiariesRule: 'Beneficiaries Rule'
   enums:
     req_transfer_type: 
       NEFT: 'NEFT'
