@@ -8,6 +8,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :inw_remitters_rules do
+    member do
+      get :audit_logs
+      put :approve
+    end
+  end
+
   resources :inw_corporates_rules do
     member do
       get :audit_logs

@@ -1,0 +1,2 @@
+module InwRemittersRulesHelper
+end

@@ -11,6 +11,7 @@ en:
    indivisual_rule: 'Indivisual Rule'
    inw_corporates_rule: 'Corporate Rule'
    inw_beneficiaries_rule: 'Beneficiaries Rule'
+   inw_remitters_rule: 'Remitters Rule'
   enums:
     req_transfer_type: 
       NEFT: 'NEFT'
