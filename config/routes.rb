@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
 
 
-  resources :inw_beneficiaries_rules
-  resources :inw_corporates_rules
+  resources :inw_beneficiaries_rules do
+    member do
+      get :audit_logs
+      put :approve
+    end
+  end
+
+  resources :inw_corporates_rules do
+    member do
+      get :audit_logs
+      put :approve
+    end
+  end
+
+
   resources :indivisual_rules do 
     member do
       get :audit_logs

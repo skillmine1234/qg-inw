@@ -9,11 +9,11 @@ class InwBeneficiariesRulesController < ApplicationController
   include ApplicationHelper
 
   def new
-    @inw_beneficiaries_rule = InwBeneficiariesRules.new
+    @inw_beneficiaries_rule = InwBeneficiariesRule.new
   end
 
   def create
-    @inw_beneficiaries_rule = InwBeneficiariesRules.new(params[:beneficiaries_rules])
+    @inw_beneficiaries_rule = InwBeneficiariesRule.new(beneficiaries_rules_params)
     if !@inw_beneficiaries_rule.valid?
       render "new"
     else
@@ -25,8 +25,8 @@ class InwBeneficiariesRulesController < ApplicationController
   end
 
   def update
-    @inw_beneficiaries_rule = InwBeneficiariesRulesw.unscoped.find_by_id(params[:id])
-    @inw_beneficiaries_rule.attributes = params[:beneficiaries_rules]
+    @inw_beneficiaries_rule = InwBeneficiariesRule.unscoped.find_by_id(params[:id])
+    @inw_beneficiaries_rule.attributes = beneficiaries_rules_params
     if !@inw_beneficiaries_rule.valid?
       render "edit"
     else
@@ -42,16 +42,16 @@ class InwBeneficiariesRulesController < ApplicationController
   end 
 
   def show
-    @inw_beneficiaries_rule = InwBeneficiariesRules.unscoped.find_by_id(params[:id])
+    @inw_beneficiaries_rule = InwBeneficiariesRule.unscoped.find_by_id(params[:id])
   end
 
   def index
-    @inw_beneficiaries_rules ||= InwBeneficiariesRules.order("id desc").paginate(:per_page => 10, :page => params[:page])
+    @inw_beneficiaries_rules ||= InwBeneficiariesRule.order("id desc").paginate(:per_page => 10, :page => params[:page])
     @inw_beneficiaries_rule = @inw_beneficiaries_rules.count
   end
 
   def audit_logs
-    @inw_beneficiaries_rule = InwBeneficiariesRules.unscoped.find(params[:id]) rescue nil
+    @inw_beneficiaries_rule = InwBeneficiariesRule.unscoped.find(params[:id]) rescue nil
     @audit = @inw_beneficiaries_rule.audits[params[:version_id].to_i] rescue nil
   end
 
@@ -62,7 +62,7 @@ class InwBeneficiariesRulesController < ApplicationController
   private
 
   def beneficiaries_rules_params
-    params.require(:beneficiaries_rules).permit(:beneficiaries,:created_by, :updated_by, :lock_version,
+    params.require(:inw_beneficiaries_rule).permit(:beneficiaries,:created_by, :updated_by, :lock_version,
                                  :approved_id, :approved_version)
   end
 end

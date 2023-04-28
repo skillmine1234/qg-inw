@@ -13,7 +13,7 @@ class InwCorporatesRulesController < ApplicationController
   end
 
   def create
-    @inw_corporates_rule = InwCorporatesRule.new(params[:inw_corporates_rule])
+    @inw_corporates_rule = InwCorporatesRule.new(corporate_rule_params)
     if !@inw_corporates_rule.valid?
       render "new"
     else
@@ -26,7 +26,7 @@ class InwCorporatesRulesController < ApplicationController
 
   def update
     @inw_corporates_rule = InwCorporatesRule.unscoped.find_by_id(params[:id])
-    @inw_corporates_rule.attributes = params[:inw_corporates_rule]
+    @inw_corporates_rule.attributes = corporate_rule_params
     if !@inw_corporates_rule.valid?
       render "edit"
     else
@@ -47,7 +47,7 @@ class InwCorporatesRulesController < ApplicationController
 
   def index
     @inw_corporates_rules ||= InwCorporatesRule.order("id desc").paginate(:per_page => 10, :page => params[:page])
-    @inw_corporates_rule = @inw_corporates_rule.count
+    @inw_corporates_rule = @inw_corporates_rules.count
   end
 
   def audit_logs
