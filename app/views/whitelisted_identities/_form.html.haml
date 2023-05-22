@@ -47,7 +47,7 @@
         = error_message_for(@whitelisted_identity, :id_expiry_date)
     .control-group
       #attachments
-        %h3 Attachments: (Maximum size 2MB,CSV,xlsx file not allowed to upload)
+        %h3 Attachments: (Maximum size 2MB,only jpeg,jpg,png,pdf and docx file upload allowed)
         .control-group.hidden
           = f.fields_for :attachments, :input_html => { :rows => 3} do |attachment_form|
             = attachment_form.label :note

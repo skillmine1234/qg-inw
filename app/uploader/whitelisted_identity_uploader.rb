@@ -33,8 +33,12 @@ class WhitelistedIdentityUploader < CarrierWave::Uploader::Base
   end
   # end
 
-  def extension_black_list
-    Attachment::BlackList
+  # def extension_black_list
+  #   Attachment::BlackList
+  # end
+
+  def extension_white_list
+    Attachment::Allowlist
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
