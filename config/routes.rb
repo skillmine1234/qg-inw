@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :index
-      post :index
+      patch :index
     end
   end
 
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
     collection do
       get :index
-      post :index
+      patch :index
     end
   end
 
@@ -74,7 +74,7 @@ Rails.application.routes.draw do
 
     collection do
       get :index
-      post :index
+      patch :index
     end
   end
 
@@ -87,7 +87,7 @@ Rails.application.routes.draw do
     collection do
       get :update_lcy_for_mtss
       get :index
-      post :index
+      patch :index
       get :tokenize_data
       get :tokenize_data_proc
     end
@@ -122,7 +122,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :index
-      post :index
+      patch :index
     end
   end
 
