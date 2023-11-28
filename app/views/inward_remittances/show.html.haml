@@ -29,7 +29,7 @@
       - if @inward_remittance.status_code == "FAILED"
         = link_to "Fault Text", "#", :class => 'fault-link', :href => "#faultText", :style => "font-weight:100"
       - if @inward_remittance.status_code == "ONHOLD"
-        = link_to "Release", release_inward_remittance_path(@inward_remittance), class: "btn btn-primary", method: :put
+        = link_to "Release", release_inward_remittance_path(@inward_remittance), class: "btn btn-primary", method: :post
       - if !@inward_remittance.inward_remittances_lock.nil?
         = "Locked"
 
