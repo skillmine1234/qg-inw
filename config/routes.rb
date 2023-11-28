@@ -4,21 +4,21 @@ Rails.application.routes.draw do
   resources :inw_beneficiaries_rules do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
   end
 
   resources :inw_remitters_rules do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
   end
 
   resources :inw_corporates_rules do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
   end
 
@@ -26,21 +26,21 @@ Rails.application.routes.draw do
   resources :indivisual_rules do 
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
   end  
   
   resources :whitelisted_identities, except: [:index,:new] do
     member do
       get :audit_logs
-      put :revoke
-      put :ratify
-      put :approve
-      put :reject
+      post :revoke
+      post :ratify
+      post :approve
+      post :reject
     end
     collection do
       get :index
-      put :index
+      post :index
     end
   end
 
@@ -56,38 +56,38 @@ Rails.application.routes.draw do
   resources :purpose_codes do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
 
     collection do
       get :index
-      put :index
+      post :index
     end
   end
 
   resources :partners do
     member do
       get :audit_logs
-      put :approve
-      put :resend_notification
+      post :approve
+      post :resend_notification
     end
 
     collection do
       get :index
-      put :index
+      post :index
     end
   end
 
   resources :partner_lcy_rates do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
 
     collection do
       get :update_lcy_for_mtss
       get :index
-      put :index
+      post :index
       get :tokenize_data
       get :tokenize_data_proc
     end
@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   resources :inw_remittance_rules do
       member do
         get :audit_logs
-        put :approve
+        post :approve
       end
     end
 
@@ -105,24 +105,24 @@ Rails.application.routes.draw do
   resources :inw_guidelines do
       member do
         get :audit_logs
-        put :approve
+        post :approve
       end
     end
 
   resources :banks do
     member do
       get :audit_logs
-      put :approve
+      post :approve
     end
   end
 
   resources :inward_remittances, except: :index do
     member do
-      put 'release'
+      post 'release'
     end
     collection do
       get :index
-      put :index
+      post :index
     end
   end
 
