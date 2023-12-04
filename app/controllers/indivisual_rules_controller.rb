@@ -7,6 +7,7 @@ class IndivisualRulesController < ApplicationController
   respond_to :json
   include Approval2::ControllerAdditions
   include ApplicationHelper
+  include IndivisualRulesHelper
 
   def new
     @indivisual_rule = IndivisualRule.new
@@ -46,8 +47,13 @@ class IndivisualRulesController < ApplicationController
   end
 
   def index
-    @indivisual_rules ||= IndivisualRule.order("id desc").paginate(:per_page => 10, :page => params[:page])
-    @indivisual_rule = @indivisual_rules.count
+
+    if params[:advanced_search].present?
+      @indivisual_rules = find_indivisual_rules(params).order("id DESC")
+    else
+      @indivisual_rules ||= IndivisualRule.order("id desc")
+    end
+    @indivisual_rules = @indivisual_rules.paginate(:per_page => 2, :page => params[:page])
   end
 
   def audit_logs

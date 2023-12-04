@@ -28,6 +28,11 @@ Rails.application.routes.draw do
       get :audit_logs
       post :approve
     end
+    collection do
+      patch :index
+      get :index
+    end
+
   end  
   
   resources :whitelisted_identities, except: [:index,:new] do
