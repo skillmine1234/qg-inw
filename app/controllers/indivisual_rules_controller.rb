@@ -53,7 +53,7 @@ class IndivisualRulesController < ApplicationController
     else
       @indivisual_rules ||= IndivisualRule.order("id desc")
     end
-    @indivisual_rules = @indivisual_rules.paginate(:per_page => 2, :page => params[:page])
+    @indivisual_rules = @indivisual_rules.paginate(:per_page => 25, :page => params[:page])
   end
 
   def audit_logs
