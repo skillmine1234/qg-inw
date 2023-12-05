@@ -5,7 +5,7 @@
     = text_field_tag :individuals, params[:individuals]
   .form-actions
     = button_tag "Search", :class => 'btn btn-primary'
-    = button_tag "Reset", :type => 'button', :value=>'Reset', :class => 'btn', :id => 'individuals_reset'
+    = button_tag "Reset", :type => 'button', :value=>'Reset', :class => 'btn', :id => 'whitelisted_identity_reset'
   = hidden_field_tag :advanced_search, :true
 
 
@@ -14,6 +14,6 @@
     $('input[type="text"]'). attr("placeholder", "Multisearch Search Enabled");
   });
 
-  $("#partner_reset").click(function() {
-    $(this).closest('form').find("input,select").val("");
+  $("#whitelisted_identity_reset").click(function() {
+    $(this).closest('form').find("input").val("");
   });
