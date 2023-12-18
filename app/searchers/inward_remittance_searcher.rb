@@ -14,7 +14,15 @@ class InwardRemittanceSearcher < Searcher
 
   def find
     reln = InwardRemittance.order('id desc')
-    reln = reln.where("inward_remittances.req_no LIKE ?", "#{request_no}%") if request_no.present?
+    reln = reln.where("inward_remittances.request_no LIKE ?", "#{request_no}%") if request_no.present?
+    reln = reln.where("inward_remittances.rmtr_code?", "#{rmtr_code}%") if rmtr_code.present?
+    reln = reln.where("inward_remittances.:bene_account_no LIKE ?", "#{:bene_account_no}%") if bene_account_no.present?
+    reln = reln.where("inward_remittances.bene_account_ifsc LIKE ?", "#{bene_account_ifsc}%") if bene_account_ifsc.present?
+    reln = reln.where("inward_remittances.bank_ref LIKE ?", "#{bank_ref}%") if bank_ref.present?
+    reln = reln.where("inward_remittances.rmtr_full_name LIKE ?", "#{rrmtr_full_name}%") if rmtr_full_name.present?
+    reln = reln.where("inward_remittances.req_transfer_type LIKE ?", "#{req_transfer_type}%") if req_transfer_type.present?
+    reln = reln.where("inward_remittances.transfer_type LIKE ?", "#{transfer_type}%") if transfer_type.present?
+    reln = reln.where("inward_remittances.from_transfer_amount LIKE ?", "#{from_transfer_amount}%") if request_no.present?
     reln = reln.where("inward_remittances.rmtr_wl_id=?", wl_id.to_i) if wl_id.present? && wl_id_for == 'R'
     reln = reln.where("inward_remittances.bene_wl_id=?", wl_id.to_i) if wl_id.present? && wl_id_for == 'B'
     reln = reln.where("lower(inward_remittances.partner_code) LIKE ?", "#{partner_id.downcase}%") if partner_id.present?

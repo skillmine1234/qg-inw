@@ -9,9 +9,9 @@ class PartnerSearcher < Searcher
   
   def find
     reln = Partner.unscoped.order('id desc')
-    reln = reln.where("approval_status = ?", approval_status) if approval_status.present?
-    reln = reln.where("allow_imps = ?", imps_allow) if imps_allow.present?
-    reln = reln.where("allow_rtgs = ?", rtgs_allow) if rtgs_allow.present?
+    reln = reln.where("partners.approval_status = LIKE ?","#{approval_status}%") if approval_status.present?
+    reln = reln.where("partners.allow_imps = LIKE ?", "#{imps_allow}%") if imps_allow.present?
+    reln = reln.where("partners.allow_rtgs = LIKE ?", "#{rtgs_allow}%") if rtgs_allow.present?
     reln
   end
 end
