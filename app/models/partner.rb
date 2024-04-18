@@ -61,18 +61,18 @@ class Partner < ApplicationRecord
   # validate :should_allow_neft?, if: "allow_neft=='Y'"
   # validate :should_allow_imps?, if: "allow_imps=='Y'"
   validate :auto_resch_and_service_name
-  validates_presence_of :merchant_id, if: "allow_upi == 'Y'"
+  validates_presence_of :merchant_id, if: ->{"allow_upi == 'Y'"}
   
   after_create :create_lcy_rate
 
   alias_attribute :is_enabled, :enabled
 
-  validates_presence_of :non_working_day_limit, if: "neft_limit_check == 'Y'"
-  validates_presence_of :working_day_limit, if: "neft_limit_check == 'Y'"
-  validates_presence_of :action_limit_breach, if: "neft_limit_check == 'Y'"
+  validates_presence_of :non_working_day_limit, if: lambda {"neft_limit_check == 'Y'"}
+  validates_presence_of :working_day_limit, if: lambda {"neft_limit_check == 'Y'"}
+  validates_presence_of :action_limit_breach, if: lambda {"neft_limit_check == 'Y'"}
   
-  validates :working_day_limit, :numericality => { :greater_than => 0}, if:"neft_limit_check == 'Y'"
-  validates :non_working_day_limit, :numericality => { :greater_than => 0}, if:"neft_limit_check == 'Y'"
+  validates :working_day_limit, :numericality => { :greater_than => 0}, if: lambda {"neft_limit_check == 'Y'"}
+  validates :non_working_day_limit, :numericality => { :greater_than => 0}, if: lambda {"neft_limit_check == 'Y'"}
   
   def create_lcy_rate
     if partner_lcy_rate.nil?
